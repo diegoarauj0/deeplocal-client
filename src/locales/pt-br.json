@@ -1,0 +1,91 @@
+{
+  "auth": {
+    "pages": {
+      "login": {
+        "title": "Acesse sua conta",
+        "description": "Informe seu e-mail e senha para continuar.",
+        "form": {
+          "emailLabel": "E-mail:",
+          "emailPlaceholder": "seu e-mail",
+          "passwordLabel": "Senha:",
+          "passwordPlaceholder": "sua senha",
+          "submit": "Entrar"
+        },
+        "links": {
+          "register": "Ainda não tem conta? Cadastre-se"
+        }
+      },
+      "register": {
+        "title": "Crie sua conta",
+        "description": "Escolha um nome de usuário e senha para acessar o deepLocal.",
+        "form": {
+          "usernameLabel": "Nome de usuário:",
+          "usernamePlaceholder": "seu nome de usuário",
+          "emailLabel": "E-mail:",
+          "emailPlaceholder": "seu e-mail",
+          "passwordLabel": "Senha:",
+          "passwordPlaceholder": "sua senha",
+          "submit": "Cadastrar"
+        },
+        "links": {
+          "login": "Já tem uma conta? Entrar"
+        }
+      }
+    },
+    "hooks": {
+      "login": {
+        "toast": {
+          "loading": "Entrando...",
+          "success": "Login realizado com sucesso",
+          "invalidForm": "Formulário inválido.",
+          "invalidCredentials": "E-mail ou senha inválidos.",
+          "unexpected": "Não foi possível acessar sua conta, tente novamente mais tarde."
+        }
+      },
+      "register": {
+        "toast": {
+          "loading": "Criando sua conta...",
+          "success": "Conta criada e login efetuado com sucesso",
+          "invalidForm": "Formulário inválido. Reveja os campos destacados.",
+          "usernameTaken": "Este nome de usuário já está em uso.",
+          "emailTaken": "Este e-mail já está em uso.",
+          "unexpected": "Não foi possível criar sua conta. Tente novamente mais tarde."
+        }
+      }
+    },
+    "schemas": {
+      "login": {
+        "email": {
+          "required": "O e-mail é obrigatório.",
+          "invalid": "Informe um endereço de e-mail válido.",
+          "min": "O e-mail deve ter ao menos {{min}} caracteres.",
+          "max": "O e-mail não pode passar de {{max}} caracteres."
+        },
+        "password": {
+          "required": "A senha é obrigatória.",
+          "min": "A senha deve ter ao menos {{min}} caracteres.",
+          "max": "A senha não pode passar de {{max}} caracteres."
+        }
+      },
+      "register": {
+        "username": {
+          "required": "O nome de usuário é obrigatório.",
+          "min": "O nome de usuário deve ter ao menos {{min}} caracteres.",
+          "max": "O nome de usuário não pode passar de {{max}} caracteres.",
+          "alpha": "O nome de usuário deve conter apenas letras e números."
+        },
+        "email": {
+          "required": "O e-mail é obrigatório.",
+          "invalid": "Informe um endereço de e-mail válido.",
+          "min": "O e-mail deve ter ao menos {{min}} caracteres.",
+          "max": "O e-mail não pode passar de {{max}} caracteres."
+        },
+        "password": {
+          "required": "A senha é obrigatória.",
+          "min": "A senha deve ter ao menos {{min}} caracteres.",
+          "max": "A senha não pode passar de {{max}} caracteres."
+        }
+      }
+    }
+  }
+}
