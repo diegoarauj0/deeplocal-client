@@ -7,11 +7,13 @@ import { toast } from "react-toastify";
 import { SignInService } from "../auth.service";
 import { AxiosError } from "axios";
 import { AuthContext } from "../auth.context";
+import { useTranslation } from "react-i18next";
 
 export function useLogin() {
   const { authenticate } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
-  const loginSchema = useLoginSchema();
+  const { t } = useTranslation("auth");
+  const loginSchema = useLoginSchema(t);
   const toastId = useId();
 
   const form = useForm<ILoginSchema>({
@@ -20,7 +22,7 @@ export function useLogin() {
   });
 
   async function onSubmit(data: ILoginSchema) {
-    toast.loading("Logging in...", { theme, toastId });
+    toast.loading(t("hooks.login.toast.loading"), { theme, toastId });
 
     try {
       const { tokens } = await SignInService(data);
@@ -28,7 +30,7 @@ export function useLogin() {
       authenticate(tokens);
 
       toast.update(toastId, {
-        render: "Successfully logged in",
+        render: t("hooks.login.toast.success"),
         type: "success",
         isLoading: false,
         autoClose: 5000,
@@ -56,7 +58,7 @@ export function useLogin() {
       }
 
       return toast.update(toastId, {
-        render: "Invalid form.",
+        render: t("hooks.login.toast.invalidForm"),
         type: "error",
         isLoading: false,
         autoClose: 5000,
@@ -64,13 +66,13 @@ export function useLogin() {
     }
 
     if (code === "INVALID_CREDENTIALS_EXCEPTION") {
-      const message = "Invalid email or password.";
+      const message = t("hooks.login.toast.invalidCredentials");
 
       form.setError("email", { message });
       form.setError("password", { message });
 
       return toast.update(toastId, {
-        render: "Invalid email or password.",
+        render: message,
         type: "error",
         isLoading: false,
         autoClose: 5000,
@@ -78,7 +80,7 @@ export function useLogin() {
     }
 
     toast.update(toastId, {
-      render: "We were unable to log in to your account, please try again later.",
+      render: t("hooks.login.toast.unexpected"),
       type: "error",
       isLoading: false,
       autoClose: 5000,

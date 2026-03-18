@@ -19,6 +19,7 @@ export const AuthTitle = styled.h2`
 export const AuthDescription = styled.p`
   color: ${(props) => props.theme.text.muted};
   text-align: center;
+  width: 100%;
 
   @media screen and (max-width: 600px) {
     display: none;

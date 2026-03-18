@@ -7,11 +7,13 @@ import { useContext, useId } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
+import { useTranslation } from "react-i18next";
 
 export function useRegister() {
   const { authenticate } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
-  const registerSchema = useRegisterSchema();
+  const { t } = useTranslation("auth");
+  const registerSchema = useRegisterSchema(t);
   const toastId = useId();
 
   const form = useForm<IRegisterSchema>({
@@ -20,7 +22,7 @@ export function useRegister() {
   });
 
   async function onSubmit(data: IRegisterSchema) {
-    toast.loading("Creating your account...", { theme, toastId });
+    toast.loading(t("hooks.register.toast.loading"), { theme, toastId });
 
     try {
       const { tokens } = await SignUpService(data);
@@ -28,7 +30,7 @@ export function useRegister() {
       authenticate(tokens);
 
       toast.update(toastId, {
-        render: "Account created and logged in successfully",
+        render: t("hooks.register.toast.success"),
         type: "success",
         isLoading: false,
         autoClose: 5000,
@@ -56,7 +58,7 @@ export function useRegister() {
       }
 
       return toast.update(toastId, {
-        render: "Invalid form. Please review the highlighted fields.",
+        render: t("hooks.register.toast.invalidForm"),
         type: "error",
         isLoading: false,
         autoClose: 5000,
@@ -64,15 +66,15 @@ export function useRegister() {
     }
 
     if (code === "USERNAME_ALREADY_IN_USE_EXCEPTION") {
-      return form.setError("username", { message: "This username is already in use." });
+      return form.setError("username", { message: t("hooks.register.toast.usernameTaken") });
     }
 
     if (code === "EMAIL_ALREADY_IN_USE_EXCEPTION") {
-      return form.setError("email", { message: "This email is already in use." });
+      return form.setError("email", { message: t("hooks.register.toast.emailTaken") });
     }
 
     return toast.update(toastId, {
-      render: "Unable to create your account. Please try again later.",
+      render: t("hooks.register.toast.unexpected"),
       type: "error",
       isLoading: false,
       autoClose: 5000,

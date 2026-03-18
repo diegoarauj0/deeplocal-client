@@ -3,36 +3,40 @@ import { RectangleEllipsis, AtSign } from "lucide-react";
 import { useLogin } from "../hooks/useLogin.hook";
 import { FormProvider } from "react-hook-form";
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 import * as S from "./common.style";
 
 export function LoginPage() {
   const { form, handleLogin } = useLogin();
+  const { t } = useTranslation("auth");
 
   return (
     <S.AuthCard>
-      <S.AuthTitle>Acesse your Account</S.AuthTitle>
-      <S.AuthDescription>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus error, reiciendis culpa voluptate aperiam
-        maiores deserunt maxime hic alias consectetur sed rerum in suscipit sit earum possimus adipisci architecto
-        officia.
-      </S.AuthDescription>
+      <S.AuthTitle>{t("pages.login.title")}</S.AuthTitle>
+      <S.AuthDescription>{t("pages.login.description")}</S.AuthDescription>
       <FormProvider {...form}>
         <S.AuthForm onSubmit={handleLogin}>
-          <InputComponent type="email" placeholder="your email" label="Email:" name="email" logo={<AtSign />} />
+          <InputComponent
+            type="email"
+            placeholder={t("pages.login.form.emailPlaceholder")}
+            label={t("pages.login.form.emailLabel")}
+            name="email"
+            logo={<AtSign />}
+          />
           <InputComponent
             type="password"
-            placeholder="your password"
-            label="Password:"
+            placeholder={t("pages.login.form.passwordPlaceholder")}
+            label={t("pages.login.form.passwordLabel")}
             name="password"
             logo={<RectangleEllipsis />}
           />
           <S.AuthSubmit $isValid={form.formState.isValid} $isSubmitting={form.formState.isSubmitting}>
-            Sign In
+            {t("pages.login.form.submit")}
           </S.AuthSubmit>
         </S.AuthForm>
       </FormProvider>
       <S.LinksContainer>
-        <Link to={"/auth/register"}>Already have any account? SignUp</Link>
+        <Link to={"/auth/register"}>{t("pages.login.links.register")}</Link>
       </S.LinksContainer>
     </S.AuthCard>
   );
