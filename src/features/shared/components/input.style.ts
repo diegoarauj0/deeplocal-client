@@ -54,7 +54,10 @@ export const IconContainer = styled.div<{ $focus: boolean }>`
   }
 `
 
-export const ErrorContainer = styled.div``
+export const ErrorContainer = styled.div`
+  width: 100%;
+  height: 30px;
+`
 
 export const Error = styled.p`
   color: ${(props) => props.theme.danger};

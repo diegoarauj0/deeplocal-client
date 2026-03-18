@@ -50,7 +50,7 @@ export const AuthContainer = styled.div`
 `
 
 export const BackgroundContainer = styled.div`
-  background-image: url("/public/bg-auth.jpg");
+  background-image: url("/bg-auth.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;

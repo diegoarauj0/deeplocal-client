@@ -1,16 +1,33 @@
-import { useId, useState, type ReactNode } from "react"
-import * as S from "./input.style"
+import { useId, useState, type ReactNode } from "react";
+import * as S from "./input.style";
+import { useController, useFormContext } from "react-hook-form";
 
 interface IInputProps {
-  type: React.HTMLInputTypeAttribute
-  placeholder?: string
-  logo: ReactNode
-  label: string
+  type: React.HTMLInputTypeAttribute;
+  placeholder?: string;
+  logo: ReactNode;
+  label: string;
+  name: string;
 }
 
-export function InputComponent({ label, type, placeholder, logo }: IInputProps) {
-  const [focus, setFocus] = useState<boolean>(false)
-  const ID = useId()
+export function InputComponent({ label, type, placeholder, logo, name }: IInputProps) {
+  const [focus, setFocus] = useState(false);
+  const { control } = useFormContext();
+  const ID = useId();
+
+  const {
+    field,
+    fieldState: { error },
+  } = useController({ name, control });
+
+  const handleFocus = () => {
+    setFocus(true);
+  };
+
+  const handleBlur = () => {
+    field.onBlur();
+    setFocus(false);
+  };
 
   return (
     <S.Content>
@@ -19,15 +36,18 @@ export function InputComponent({ label, type, placeholder, logo }: IInputProps) 
       </S.LabelContainer>
       <S.IconContainer $focus={focus}>{logo}</S.IconContainer>
       <S.Input
-        type={type}
         id={ID}
+        type={type}
         placeholder={placeholder}
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? `${ID}-error` : undefined}
+        {...field}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
       />
       <S.ErrorContainer>
-        <S.Error>Error.</S.Error>
+        <S.Error id={`${ID}-error`}>{error?.message?.toString()}</S.Error>
       </S.ErrorContainer>
     </S.Content>
-  )
+  );
 }
