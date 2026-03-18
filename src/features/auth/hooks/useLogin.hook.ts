@@ -25,9 +25,9 @@ export function useLogin() {
     toast.loading(t("hooks.login.toast.loading"), { theme, toastId });
 
     try {
-      const { tokens } = await SignInService(data);
+      const { tokens, user } = await SignInService(data);
 
-      authenticate(tokens);
+      authenticate(tokens, user.username, user.ID);
 
       toast.update(toastId, {
         render: t("hooks.login.toast.success"),

@@ -2,12 +2,12 @@ import { useRegisterSchema, type IRegisterSchema } from "../schemas/useRegister.
 import { ThemeContext } from "../../styles/theme.context";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { SignUpService } from "../auth.service";
+import { useTranslation } from "react-i18next";
 import { AuthContext } from "../auth.context";
 import { useContext, useId } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
-import { useTranslation } from "react-i18next";
 
 export function useRegister() {
   const { authenticate } = useContext(AuthContext);
@@ -25,9 +25,9 @@ export function useRegister() {
     toast.loading(t("hooks.register.toast.loading"), { theme, toastId });
 
     try {
-      const { tokens } = await SignUpService(data);
+      const { tokens, user } = await SignUpService(data);
 
-      authenticate(tokens);
+      authenticate(tokens, user.username, user.ID);
 
       toast.update(toastId, {
         render: t("hooks.register.toast.success"),
