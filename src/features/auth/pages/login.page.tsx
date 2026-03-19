@@ -1,4 +1,4 @@
-import { InputComponent } from "../../shared/components/input.component";
+import { InputComponent } from "../../shared/components/input/input.component";
 import { RectangleEllipsis, AtSign } from "lucide-react";
 import { useLogin } from "../hooks/useLogin.hook";
 import { FormProvider } from "react-hook-form";

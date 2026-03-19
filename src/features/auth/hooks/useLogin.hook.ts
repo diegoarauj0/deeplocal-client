@@ -26,7 +26,7 @@ export function useLogin() {
 
     try {
       const { tokens, user } = await SignInService(data);
-
+      console.log(tokens)
       authenticate(tokens, user.username, user.ID);
 
       toast.update(toastId, {
@@ -41,42 +41,42 @@ export function useLogin() {
   }
 
   function handleError(error: unknown) {
-    if (!(error instanceof AxiosError)) return false;
+    if (error instanceof AxiosError) {
+      const code = error.response?.data?.error?.code;
 
-    const code = error.response?.data?.error?.code;
+      if (code === "VALIDATION_ERROR_EXCEPTION") {
+        const details = error.response?.data?.error?.details ?? [];
 
-    if (code === "VALIDATION_ERROR_EXCEPTION") {
-      const details = error.response?.data?.error?.details ?? [];
+        for (const detail of details) {
+          const field = detail.name as "email" | "password";
+          const message = detail.reasons?.[0]?.message;
 
-      for (const detail of details) {
-        const field = detail.name as "email" | "password";
-        const message = detail.reasons?.[0]?.message;
-
-        if (message) {
-          form.setError(field, { message });
+          if (message) {
+            form.setError(field, { message });
+          }
         }
+
+        return toast.update(toastId, {
+          render: t("hooks.login.toast.invalidForm"),
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
       }
 
-      return toast.update(toastId, {
-        render: t("hooks.login.toast.invalidForm"),
-        type: "error",
-        isLoading: false,
-        autoClose: 5000,
-      });
-    }
+      if (code === "INVALID_CREDENTIALS_EXCEPTION") {
+        const message = t("hooks.login.toast.invalidCredentials");
 
-    if (code === "INVALID_CREDENTIALS_EXCEPTION") {
-      const message = t("hooks.login.toast.invalidCredentials");
+        form.setError("email", { message });
+        form.setError("password", { message });
 
-      form.setError("email", { message });
-      form.setError("password", { message });
-
-      return toast.update(toastId, {
-        render: message,
-        type: "error",
-        isLoading: false,
-        autoClose: 5000,
-      });
+        return toast.update(toastId, {
+          render: message,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+      }
     }
 
     toast.update(toastId, {

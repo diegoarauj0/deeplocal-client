@@ -11,7 +11,7 @@ void i18n
     resources: { en: en, "pt-BR": pt },
     fallbackLng: "en",
     supportedLngs: ["en", "pt-BR"],
-    ns: ["auth"],
+    ns: ["auth", "profile"],
     defaultNS: "auth",
     interpolation: { escapeValue: false },
     detection: {

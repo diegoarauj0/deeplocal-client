@@ -41,36 +41,36 @@ export function useRegister() {
   }
 
   function handleError(error: unknown) {
-    if (!(error instanceof AxiosError)) return false;
+    if (error instanceof AxiosError) {
+      const code = error.response?.data?.error?.code;
 
-    const code = error.response?.data?.error?.code;
+      if (code === "VALIDATION_ERROR_EXCEPTION") {
+        const details = error.response?.data?.error?.details ?? [];
 
-    if (code === "VALIDATION_ERROR_EXCEPTION") {
-      const details = error.response?.data?.error?.details ?? [];
+        for (const detail of details) {
+          const field = detail.name as "email" | "password" | "username";
+          const message = detail.reasons?.[0]?.message;
 
-      for (const detail of details) {
-        const field = detail.name as "email" | "password" | "username";
-        const message = detail.reasons?.[0]?.message;
-
-        if (message) {
-          form.setError(field, { message });
+          if (message) {
+            form.setError(field, { message });
+          }
         }
+
+        return toast.update(toastId, {
+          render: t("hooks.register.toast.invalidForm"),
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
       }
 
-      return toast.update(toastId, {
-        render: t("hooks.register.toast.invalidForm"),
-        type: "error",
-        isLoading: false,
-        autoClose: 5000,
-      });
-    }
+      if (code === "USERNAME_ALREADY_IN_USE_EXCEPTION") {
+        return form.setError("username", { message: t("hooks.register.toast.usernameTaken") });
+      }
 
-    if (code === "USERNAME_ALREADY_IN_USE_EXCEPTION") {
-      return form.setError("username", { message: t("hooks.register.toast.usernameTaken") });
-    }
-
-    if (code === "EMAIL_ALREADY_IN_USE_EXCEPTION") {
-      return form.setError("email", { message: t("hooks.register.toast.emailTaken") });
+      if (code === "EMAIL_ALREADY_IN_USE_EXCEPTION") {
+        return form.setError("email", { message: t("hooks.register.toast.emailTaken") });
+      }
     }
 
     return toast.update(toastId, {

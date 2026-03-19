@@ -4,13 +4,14 @@ import { useController, useFormContext } from "react-hook-form";
 
 interface IInputProps {
   type: React.HTMLInputTypeAttribute;
+  defaultValue?: string;
   placeholder?: string;
   logo: ReactNode;
   label: string;
   name: string;
 }
 
-export function InputComponent({ label, type, placeholder, logo, name }: IInputProps) {
+export function InputComponent({ label, type, placeholder, logo, name, defaultValue }: IInputProps) {
   const [focus, setFocus] = useState(false);
   const { control } = useFormContext();
   const ID = useId();
@@ -38,6 +39,7 @@ export function InputComponent({ label, type, placeholder, logo, name }: IInputP
       <S.Input
         id={ID}
         type={type}
+        defaultValue={defaultValue}
         placeholder={placeholder}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${ID}-error` : undefined}

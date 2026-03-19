@@ -87,5 +87,39 @@
         }
       }
     }
+  },
+  "profile": {
+    "common": {
+      "openSettings": "Open settings",
+      "closeModal": "Close modal",
+      "closeSettings": "Close settings",
+      "send": "Send",
+      "sending": "Sending..."
+    },
+    "editBackground": {
+      "title": "Upload background",
+      "previewAlt": "Background preview"
+    },
+    "editProfile": {
+      "title": "Settings",
+      "description": "Customize your profile and theme.",
+      "nicknameLabel": "Nickname",
+      "nicknamePlaceholder": "Your nickname",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Your username",
+      "bioLabel": "Bio",
+      "bioPlaceholder": "Tell us a bit about yourself.",
+      "submit": "Update",
+      "submitLoading": "Saving...",
+      "themeTitle": "Color theme",
+      "themeSelect": "Select theme {{theme}}"
+    },
+    "profileAvatar": {
+      "title": "Upload avatar",
+      "previewAlt": "Avatar preview"
+    },
+    "profilePage": {
+      "emptyBio": "No description."
+    }
   }
 }
