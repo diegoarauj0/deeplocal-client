@@ -59,7 +59,16 @@
   },
   "PAGES": {
     "PROFILE": {
-      "EMPTY_BIO": "No description."
+      "EMPTY_BIO": "No description.",
+
+      "UNEXPECTED_ERROR": {
+        "TITLE": "Unable to reach the server.",
+        "HELP": "Check your connection or try again in a few moments."
+      },
+      "NOT_FOUND_ERROR": {
+        "TITLE": "\"{{identifier}}\" could not be found..",
+        "HELP": "This user either doesn't exist or has been deleted. Please verify that the URL is correct."
+      }
     }
   }
 }

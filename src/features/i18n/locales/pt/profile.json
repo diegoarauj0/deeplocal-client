@@ -59,7 +59,15 @@
   },
   "PAGES": {
     "PROFILE": {
-      "EMPTY_BIO": "Sem descrição."
+      "EMPTY_BIO": "Sem descrição.",
+      "UNEXPECTED_ERROR": {
+        "TITLE": "Não foi possível acessar o servidor.",
+        "HELP": "Verifique sua conexão ou tente novamente daqui a alguns instantes."
+      },
+      "NOT_FOUND_ERROR": {
+        "TITLE": "\"{{identifier}}\" Não foi encontrado.",
+        "HELP": "Esse usuários não existe ou foi deletado, verifique se a url esta certa."
+      }
     }
   }
 }
