@@ -1,0 +1,43 @@
+{
+  "COMPONENTS": {
+    "PROFILE_AVATAR": {
+      "TITLE": "Upload avatar",
+      "DESCRIPTION": "Customize your avatar.",
+      "PREVIEW_ALT": "Avatar preview"
+    },
+    "COMMON": {
+      "SEND": "Send",
+      "SENDING": "Sending..."
+    },
+    "EDIT_BACKGROUND": {
+      "TITLE": "Upload Background",
+      "DESCRIPTION": "Customize the background image that will appear on your page.",
+      "PREVIEW_ALT": "Background preview"
+    },
+    "EDIT_PROFILE": {
+      "TITLE": "Settings",
+      "DESCRIPTION": "Customize your profile and theme.",
+      "SUBMIT": "Update",
+      "SUBMIT_LOADING": "Saving...",
+      "THEME_TITLE": "Color theme",
+      "THEME_SELECT": "Select theme {{theme}}",
+      "FORM": {
+        "PLACEHOLDERS": {
+          "USERNAME": "Your username",
+          "NICKNAME": "Your nickname",
+          "BIO": "Tell something about yourself."
+        },
+        "LABELS": {
+          "USERNAME": "Username",
+          "NICKNAME": "Nickname",
+          "BIO": "Bio"
+        }
+      }
+    }
+  },
+  "PAGES": {
+    "PROFILE": {
+      "EMPTY_BIO": "No description."
+    }
+  }
+}

@@ -23,7 +23,7 @@ export const ProfileTop = styled.div<{ $isBackgroundImage: boolean }>`
   justify-content: center;
   flex-wrap: wrap;
   display: flex;
-  border-top: ${(props) => (props.$isBackgroundImage ? `1px solid ${props.theme.highlight}` : "")}
+  border-top: ${(props) => (props.$isBackgroundImage ? `1px solid ${props.theme.highlight}` : "")};
   border-radius: 1rem;
   padding: 2rem 0px;
   width: 60%;
@@ -38,8 +38,9 @@ export const Settings = styled.div`
 
 export const LinksContainer = styled.div``;
 
-export const ProfileNickname = styled.div`
+export const ProfileNickname = styled.div<{ $isBackgroundImage: boolean }>`
   color: ${(props) => props.theme.text.normal};
+  text-shadow: ${props => props.$isBackgroundImage?`1px 1px 3px ${props.theme.primary.normal}`:"none"} ;
   margin-bottom: 0.5rem;
   text-align: center;
   font-size: 1.5rem;

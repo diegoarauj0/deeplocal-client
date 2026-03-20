@@ -1,28 +1,29 @@
-export type ThemeMode = "light" | "dark";
-export type ThemeVariant = "red" | "blue" | "green" | "yellow" | "pink" | "purple" | "orange";
+import type { ColorUser } from "../shared/deeplocal.http";
 
-type ColorScale = {
+export type ThemeMode = "light" | "dark";
+
+interface InterfaceColorScale {
   normal: string;
   light: string;
-};
+}
 
-type TextScale = {
+interface InterfaceTextScale {
   normal: string;
   muted: string;
-};
+}
 
-type BorderScale = {
+interface InterfaceBorderScale {
   normal: string;
   muted: string;
-};
+}
 
-export interface ITheme {
-  bg: ColorScale & { void: string; dark: string };
-  primary: ColorScale;
+export interface InterfaceTheme {
+  bg: InterfaceColorScale & { void: string; dark: string };
+  primary: InterfaceColorScale;
   highlight: string;
 
-  text: TextScale;
-  border: BorderScale;
+  text: InterfaceTextScale;
+  border: InterfaceBorderScale;
 
   secondary: string;
   danger: string;
@@ -33,7 +34,7 @@ export interface ITheme {
   shadow: string;
 }
 
-export const baseThemes: Record<ThemeMode, ITheme> = {
+export const baseThemes: Record<ThemeMode, InterfaceTheme> = {
   dark: {
     bg: {
       void: "hsl(0 0% 0%)",
@@ -79,26 +80,26 @@ export const baseThemes: Record<ThemeMode, ITheme> = {
   },
 };
 
-const createVariant = (hue: number, text: ThemeMode) => ({
+const createVariant: (hue: number, mode: ThemeMode) => InterfaceTheme = (hue: number, mode: ThemeMode) => ({
+  ...baseThemes[mode],
   primary: {
     light: `hsl(${hue} 70% 60%)`,
     normal: `hsl(${hue} 60% 50%)`,
-    dark: `hsl(${hue} 60% 40%)`,
   },
   highlight: `hsl(${hue} 80% 55%)`,
   border: {
     normal: `hsl(${hue} 30% 40%)`,
     muted: `hsl(${hue} 20% 25%)`,
   },
-  text: text === "light" ? baseThemes.light.text : baseThemes.dark.text,
   bg: {
     dark: `hsl(${hue} 100% 5%)`,
     normal: `hsl(${hue} 100% 8%)`,
     light: `hsl(${hue} 100% 12%)`,
-  },
+    void: baseThemes[mode].bg.void,
+  }
 });
 
-export const variants: Record<ThemeVariant, ReturnType<typeof createVariant>> = {
+export const variants: Record<ColorUser, InterfaceTheme> = {
   red: createVariant(0, "dark"),
   blue: createVariant(220, "dark"),
   green: createVariant(140, "dark"),

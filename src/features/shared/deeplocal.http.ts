@@ -1,6 +1,7 @@
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../auth/auth.provider";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../auth/contexts/auth.provider";
 import axios from "axios";
-import type { ThemeVariant } from "../styles/themes";
+
+export type ColorUser = "red" | "blue" | "green" | "yellow" | "pink" | "purple" | "orange";
 
 export interface IPublicUser {
   username: string;
@@ -8,7 +9,7 @@ export interface IPublicUser {
   createdAt: string;
   updatedAt: string;
   ID: string;
-  color: ThemeVariant | null;
+  color: ColorUser | null;
   bio: string | null;
   avatar: string | null;
   background: string | null;
