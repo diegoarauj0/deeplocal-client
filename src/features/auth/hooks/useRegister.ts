@@ -12,7 +12,7 @@ export function useRegister() {
   const { authenticate } = useAuthContext();
   const { t } = useTranslation("auth");
 
-  const toastId = "NOTIFICATION_USE_REGISTER"
+  const toastId = "NOTIFICATION_USE_REGISTER";
 
   const form = useForm<IRegisterSchema>({
     resolver: joiResolver(registerSchema, { abortEarly: false }),
@@ -63,11 +63,25 @@ export function useRegister() {
       }
 
       if (code === "USERNAME_ALREADY_IN_USE_EXCEPTION") {
-        return form.setError("username", { message: t("HOOKS.REGISTER.NOTIFICATION.USERNAME_ALREADY_IN_USE") });
+        form.setError("username", { message: t("HOOKS.REGISTER.NOTIFICATION.USERNAME_ALREADY_IN_USE") });
+
+        return toast.update(toastId, {
+          render: t("HOOKS.REGISTER.NOTIFICATION.USERNAME_ALREADY_IN_USE"),
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
       }
 
       if (code === "EMAIL_ALREADY_IN_USE_EXCEPTION") {
-        return form.setError("email", { message: t("HOOKS.REGISTER.NOTIFICATION.EMAIL_ALREADY_IN_USE") });
+        form.setError("email", { message: t("HOOKS.REGISTER.NOTIFICATION.EMAIL_ALREADY_IN_USE") });
+
+        return toast.update(toastId, {
+          render: t("HOOKS.REGISTER.NOTIFICATION.EMAIL_ALREADY_IN_USE"),
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
       }
     }
 

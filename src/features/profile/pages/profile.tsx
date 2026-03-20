@@ -31,7 +31,7 @@ export function ProfilePage() {
     color: data?.user.color ?? undefined,
   };
 
-  const isBackgroundImage = data?.user.background !== null
+  const isBackgroundImage = data?.user.background !== null;
 
   return (
     <ThemeProvider theme={colorTheme}>

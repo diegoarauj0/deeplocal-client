@@ -12,7 +12,11 @@ export function useUpdateUserForm({ defaultValues }: InterfaceUseUpdateUserForm)
 
   const form = useForm<IUpdateUserSchema>({
     resolver: joiResolver(updateUserSchema, { abortEarly: false }),
-    defaultValues: defaultValues,
+    defaultValues: {
+      username: defaultValues.username,
+      nickname: defaultValues.nickname,
+      bio: defaultValues.bio,
+    },
     mode: "all",
   });
 

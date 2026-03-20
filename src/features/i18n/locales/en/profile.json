@@ -3,7 +3,13 @@
     "PROFILE_AVATAR": {
       "TITLE": "Upload avatar",
       "DESCRIPTION": "Customize your avatar.",
-      "PREVIEW_ALT": "Avatar preview"
+      "PREVIEW_ALT": "Avatar preview",
+      "NOTIFICATION": {
+        "INVALID_CONTENT_TYPE": "File type \"{{contentType}}\" is not supported. Allowed: \"{{acceptedContentTypes}}\".",
+        "LOADING": "Uploading image...",
+        "SUCCESS": "Avatar updated successfully!",
+        "UNEXPECTED": "An error occurred while updating the avatar. Please try again."
+      }
     },
     "COMMON": {
       "SEND": "Send",
@@ -12,7 +18,13 @@
     "EDIT_BACKGROUND": {
       "TITLE": "Upload Background",
       "DESCRIPTION": "Customize the background image that will appear on your page.",
-      "PREVIEW_ALT": "Background preview"
+      "PREVIEW_ALT": "Background preview",
+      "NOTIFICATION": {
+        "INVALID_CONTENT_TYPE": "File type \"{{contentType}}\" is not supported. Allowed: \"{{acceptedContentTypes}}\".",
+        "LOADING": "Uploading image...",
+        "SUCCESS": "Background updated successfully!",
+        "UNEXPECTED": "An error occurred while updating the background. Please try again."
+      }
     },
     "EDIT_PROFILE": {
       "TITLE": "Settings",
@@ -32,6 +44,16 @@
           "NICKNAME": "Nickname",
           "BIO": "Bio"
         }
+      },
+      "NOTIFICATION": {
+        "THEME_SELECTED": "Theme \"{{theme}}\" selected.",
+        "LOADING": "Saving changes...",
+        "THEME_SELECT": "Select theme {{theme}}",
+        "USERNAME_WARNING": "Changing your username may affect how others find you.",
+        "SUCCESS": "Profile updated successfully!",
+        "UNEXPECTED": "An unexpected error occurred. Please try again.",
+        "USERNAME_ALREADY_IN_USE": "This username is already in use.",
+        "INVALID_FORM": "Please fill out all fields correctly."
       }
     }
   },
