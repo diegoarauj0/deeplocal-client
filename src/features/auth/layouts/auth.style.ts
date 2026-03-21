@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Content = styled.main`
   background-color: ${(props) => props.theme.bg.void};
-  padding: 1rem;
+  padding: 0.5rem;
   height: 100vh;
   width: 100vw;
 
