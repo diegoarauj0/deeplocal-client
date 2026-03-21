@@ -70,5 +70,27 @@
         "HELP": "This user either doesn't exist or has been deleted. Please verify that the URL is correct."
       }
     }
+  },
+  "HOOKS": {
+    "SCHEMAS": {
+      "USE_UPDATE_USER": {
+        "USERNAME": {
+          "REQUIRED": "Username is required.",
+          "MIN": "Username must be at least {{min}} characters.",
+          "MAX": "Username must not exceed {{max}} characters.",
+          "ALPHA": "Username must contain only letters and numbers."
+        },
+        "NICKNAME": {
+          "REQUIRED": "Nickname is required.",
+          "MIN": "Nickname must be at least {{min}} characters.",
+          "MAX": "Nickname must not exceed {{max}} characters.",
+          "ALPHA": "Nickname must contain only letters and numbers."
+        },
+        "BIO": {
+          "MIN": "Bio must be at least {{min}} characters.",
+          "MAX": "Bio must not exceed {{max}} characters."
+        }
+      }
+    }
   }
 }

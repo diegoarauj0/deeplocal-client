@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
 import { userConstant } from "../../../shared/constants/user.constant";
+import { useTranslation } from "react-i18next";
 import joi from "joi";
 
 export interface InterfaceLoginSchema {
@@ -18,11 +18,11 @@ export function useLoginSchema() {
       .max(userConstant.EMAIL_LENGTH_MAX)
       .required()
       .messages({
-        "string.empty": t("schemas.login.email.required"),
-        "any.required": t("schemas.login.email.required"),
-        "string.email": t("schemas.login.email.invalid"),
-        "string.min": t("schemas.login.email.min", { min: userConstant.EMAIL_LENGTH_MIN }),
-        "string.max": t("schemas.login.email.max", { max: userConstant.EMAIL_LENGTH_MAX }),
+        "string.empty": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.REQUIRED"),
+        "any.required": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.REQUIRED"),
+        "string.email": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.invalid"),
+        "string.min": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.MIN", { min: userConstant.EMAIL_LENGTH_MIN }),
+        "string.max": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.MAX", { max: userConstant.EMAIL_LENGTH_MAX }),
       }),
     password: joi
       .string()
@@ -30,10 +30,10 @@ export function useLoginSchema() {
       .max(userConstant.PASSWORD_LENGTH_MAX)
       .required()
       .messages({
-        "string.empty": t("schemas.login.password.required"),
-        "any.required": t("schemas.login.password.required"),
-        "string.min": t("schemas.login.password.min", { min: userConstant.PASSWORD_LENGTH_MIN }),
-        "string.max": t("schemas.login.password.max", { max: userConstant.PASSWORD_LENGTH_MAX }),
+        "string.empty": t("HOOKS.SCHEMAS.USE_LOGIN.PASSWORD.REQUIRED"),
+        "any.required": t("HOOKS.SCHEMAS.USE_LOGIN.PASSWORD.REQUIRED"),
+        "string.min": t("HOOKS.SCHEMAS.USE_LOGIN.PASSWORD.MIN", { min: userConstant.PASSWORD_LENGTH_MIN }),
+        "string.max": t("HOOKS.SCHEMAS.USE_LOGIN.PASSWORD.MAX", { max: userConstant.PASSWORD_LENGTH_MAX }),
       }),
   });
 }

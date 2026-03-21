@@ -1,4 +1,4 @@
-import { deepLocalInstance, type IPrivateUser, type ITokens } from "../../shared/deeplocal.http";
+import { deepLocalInstance, type InterfacePrivateUser, type InterfaceTokens } from "../../shared/deeplocal.http";
 
 const AUTH_ROUTES: Record<string, { URL: (...args: string[]) => string; METHOD: "post" }> = {
   SIGN_IN: { URL: () => "api/auth/signIn", METHOD: "post" },
@@ -11,8 +11,8 @@ interface InterfaceSignInData {
 }
 
 interface InterfaceAuthResponse {
-  user: IPrivateUser;
-  tokens: ITokens;
+  user: InterfacePrivateUser;
+  tokens: InterfaceTokens;
 }
 
 export async function signInService(data: InterfaceSignInData): Promise<InterfaceAuthResponse> {
@@ -36,7 +36,7 @@ export async function signUpService(data: InterfaceSignUpData): Promise<Interfac
   const URL = AUTH_ROUTES.SIGN_UP.URL();
 
   console.log(`[AuthService] signUpService ${METHOD.toUpperCase()}: ${URL}`);
-  
+
   const response = await deepLocalInstance[METHOD](URL, data);
   return response.data;
 }

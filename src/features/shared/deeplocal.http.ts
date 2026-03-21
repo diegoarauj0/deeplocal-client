@@ -3,7 +3,19 @@ import axios from "axios";
 
 export type ColorUser = "red" | "blue" | "green" | "yellow" | "pink" | "purple" | "orange";
 
-export interface IPublicUser {
+export interface InterfacePublicLink {
+  ID: string;
+  title: string;
+  url: string,
+  icon: string | null,
+  enabled: boolean
+  position: number
+  userId: InterfacePublicUser["ID"]
+  createdAt: string
+  updatedAt: string
+}
+
+export interface InterfacePublicUser {
   username: string;
   nickname: string;
   createdAt: string;
@@ -15,11 +27,11 @@ export interface IPublicUser {
   background: string | null;
 }
 
-export interface IPrivateUser extends IPublicUser {
+export interface InterfacePrivateUser extends InterfacePublicUser {
   email: string;
 }
 
-export interface ITokens {
+export interface InterfaceTokens {
   refresh: string;
   access: string;
 }

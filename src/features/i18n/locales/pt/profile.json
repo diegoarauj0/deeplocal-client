@@ -69,5 +69,25 @@
         "HELP": "Esse usuários não existe ou foi deletado, verifique se a url esta certa."
       }
     }
+  },
+  "HOOKS": {
+    "USE_UPDATE_USER": {
+      "USERNAME": {
+        "REQUIRED": "O nome de usuário é obrigatório.",
+        "MIN": "O nome de usuário deve ter ao menos {{min}} caracteres.",
+        "MAX": "O nome de usuário não pode passar de {{max}} caracteres.",
+        "ALPHA": "O nome de usuário deve conter apenas letras e números."
+      },
+      "NICKNAME": {
+        "REQUIRED": "O nickname é obrigatório.",
+        "MIN": "O nickname deve ter ao menos {{min}} caracteres.",
+        "MAX": "O nickname não pode passar de {{max}} caracteres.",
+        "ALPHA": "O nickname deve conter apenas letras e números."
+      },
+      "BIO": {
+        "MIN": "A bio deve ter ao menos {{min}} caracteres.",
+        "MAX": "A bio não pode passar de {{max}} caracteres."
+      }
+    }
   }
 }

@@ -1,14 +1,17 @@
 import { EditProfileTriggerComponent, type InterfaceDefaultValues } from "../components/editProfile/editProfileTrigger";
 import { ProfileAvatarDisplayComponent } from "../components/profileAvatar/profileAvatarDisplay";
-import { AlertTriangle } from "lucide-react";
+import { CreateLinkTriggerComponent } from "../../link/components/createLink/createLinkTrigger";
 import { EditBackgroundTrigger } from "../components/editBackground/editBackgroundTrigger";
 import { ToggleThemeComponent } from "../../styles/components/toggleTheme";
 import { useThemeContext } from "../../styles/contexts/theme.context";
+import { LinksComponent } from "../../link/components/links/links";
+import { useLinks } from "../../link/hooks/reactQuery/useLinks";
 import { AuthContext } from "../../auth/contexts/auth.context";
 import { useUser } from "../hooks/reactQuery/useUser";
 import { ThemeProvider } from "styled-components";
 import { variants } from "../../styles/themes";
 import { useTranslation } from "react-i18next";
+import { AlertTriangle } from "lucide-react";
 import { useParams } from "react-router";
 import * as S from "./profile.style";
 import { useContext } from "react";
@@ -35,7 +38,7 @@ function ProfileLoading() {
   );
 }
 
-function ProfileError({ error, identifier }: { error: Error; identifier?: string | undefined }) {
+function ProfileError({ error, identifier }: { error: Error | null; identifier?: string | undefined }) {
   const { t } = useTranslation("profile");
 
   if (error instanceof AxiosError && error.response?.data.error.code === "USER_NOT_FOUND_EXCEPTION") {
@@ -74,77 +77,92 @@ function ProfileError({ error, identifier }: { error: Error; identifier?: string
 }
 
 export function ProfilePage() {
-  const { identifier } = useParams();
+  const { themeProps: defaultTheme } = useThemeContext();
   const { currentUserId } = useContext(AuthContext);
-  const { data, isPending, isError, error } = useUser(identifier || "");
   const { t } = useTranslation("profile");
-  const { themeProps } = useThemeContext();
+  const { identifier } = useParams();
+  
+  const {
+    data: userResponse,
+    isPending: isUserLoading,
+    isError: isUserError,
+    error: userError,
+  } = useUser(identifier || "");
 
-  const profileOwner = currentUserId === data?.user.ID;
+  const user = userResponse?.user;
+  const userId = user?.ID;
 
-  const color = data?.user?.color;
-  const colorTheme = color ? variants[color] : themeProps;
+  const { data: linksResponse, isPending: isLinksLoading, isError: isLinksError } = useLinks(userId);
 
-  const defaultValues: InterfaceDefaultValues = {
-    nickname: data?.user.nickname ?? undefined,
-    username: data?.user.username ?? undefined,
-    bio: data?.user.bio ?? undefined,
-    color: data?.user.color ?? undefined,
+  const links = linksResponse?.links ?? [];
+
+  const isOwner = currentUserId === userId;
+
+  const userTheme = user?.color ? variants[user.color] : defaultTheme;
+
+  const hasBackgroundImage = Boolean(user?.background);
+
+  const editProfileDefaultValues: InterfaceDefaultValues = {
+    nickname: user?.nickname,
+    username: user?.username,
+    bio: user?.bio ?? undefined,
+    color: user?.color ?? undefined,
   };
 
-  const isBackgroundImage = data?.user.background !== null;
-
-  if (isPending) {
+  if (isUserLoading || isLinksLoading) {
     return (
-      <ThemeProvider theme={colorTheme}>
+      <ThemeProvider theme={defaultTheme}>
         <ProfileLoading />
       </ThemeProvider>
     );
   }
 
-  if (isError) {
+  if (isUserError || isLinksError) {
     return (
-      <ThemeProvider theme={themeProps}>
+      <ThemeProvider theme={defaultTheme}>
         <S.Settings>
           <ToggleThemeComponent />
         </S.Settings>
-        <ProfileError error={error} identifier={identifier} />
+        <ProfileError error={userError} identifier={identifier} />
       </ThemeProvider>
     );
   }
 
   return (
-    <ThemeProvider theme={colorTheme}>
+    <ThemeProvider theme={userTheme}>
       <S.Settings>
         <ToggleThemeComponent />
-        {profileOwner ? (
+        {isOwner ? (
           <>
-            <EditProfileTriggerComponent identifier={identifier || ""} defaultValues={defaultValues} />
+            <EditProfileTriggerComponent identifier={identifier || ""} defaultValues={editProfileDefaultValues} />
             <EditBackgroundTrigger identifier={identifier || ""} />
           </>
         ) : null}
       </S.Settings>
-      <S.Profile $background={data?.user.background}>
-        <S.ProfileTop $isBackgroundImage={isBackgroundImage}>
+      <S.Profile $background={user?.background}>
+        <S.ProfileTop $isBackgroundImage={hasBackgroundImage}>
           <ProfileAvatarDisplayComponent
             identifier={identifier || ""}
-            profileOwner={profileOwner}
+            profileOwner={isOwner}
             user={{
-              avatar: data?.user.avatar,
-              username: data?.user.username,
+              avatar: user?.avatar,
+              username: user?.username,
             }}
           />
-          <S.ProfileNickname $isBackgroundImage={isBackgroundImage}>
-            <p>{data?.user.nickname}</p>
+          <S.ProfileNickname $isBackgroundImage={hasBackgroundImage}>
+            <p>{user?.nickname}</p>
           </S.ProfileNickname>
           <S.ProfileUsername>
-            <p>{data?.user.username}</p>
+            <p>{user?.username}</p>
           </S.ProfileUsername>
           <S.ProfileBio>
-            <p>{data?.user.bio ?? t("profilePage.emptyBio")}</p>
+            <p>{user?.bio ?? t("PAGES.PROFILE.EMPTY_BIO")}</p>
           </S.ProfileBio>
         </S.ProfileTop>
-        <S.LinksContainer></S.LinksContainer>
+        <S.LinksContainer>
+          <CreateLinkTriggerComponent userId={userId || ""} isOwner={isOwner} />
+          <LinksComponent links={links} isOwner={isOwner} />
+        </S.LinksContainer>
       </S.Profile>
     </ThemeProvider>
   );

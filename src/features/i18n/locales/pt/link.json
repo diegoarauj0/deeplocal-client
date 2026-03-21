@@ -1,0 +1,45 @@
+{
+  "COMPONENTS": {
+    "LINKS_COMPONENT": {
+      "PROFILE_OWNER_EMPTY": "Ainda não há links. Use o botão acima para adicionar o primeiro.",
+      "EMPTY": "Esse usuário ainda não adicionou nenhum link."
+    },
+    "CREATE_LINK": {
+      "TRIGGER": "Adicionar link",
+      "TITLE": "Adicionar novo link",
+      "DESCRIPTION": "Compartilhe outro destino para quem visita seu perfil.",
+      "FORM": {
+        "LABELS": {
+          "TITLE": "Título",
+          "URL": "URL"
+        },
+        "PLACEHOLDERS": {
+          "TITLE": "Meu portfólio",
+          "URL": "https://exemplo.com"
+        },
+        "SUBMIT": "Salvar link",
+        "SUBMIT_LOADING": "Salvando..."
+      },
+      "NOTIFICATION": {
+        "SUCCESS": "Link adicionado ao seu perfil!",
+        "UNEXPECTED": "Não foi possível adicionar o link agora. Tente novamente."
+      }
+    }
+  },
+  "HOOKS": {
+    "SCHEMAS": {
+      "USE_CREATE_LINK": {
+        "TITLE": {
+          "REQUIRED": "O título do link é obrigatório.",
+          "MIN": "O título deve ter ao menos {{min}} caracteres.",
+          "MAX": "O título não pode passar de {{max}} caracteres.",
+          "ALPHA": "O título deve conter apenas letras e números."
+        },
+        "URL": {
+          "REQUIRED": "A URL é obrigatória.",
+          "INVALID": "Informe uma URL válida."
+        }
+      }
+    }
+  }
+}

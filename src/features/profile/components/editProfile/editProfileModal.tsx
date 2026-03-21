@@ -1,33 +1,34 @@
 import { TextareaComponent } from "../../../shared/components/textarea/textarea";
 import type { InterfaceEditProfileTriggerProps } from "./editProfileTrigger";
-import { CURRENT_USERNAME_KEY } from "../../../auth/contexts/auth.provider";
 import { InputComponent } from "../../../shared/components/input/input";
 import { userConstant } from "../../../shared/constants/user.constant";
 import { PopupContext } from "../../../shared/contexts/popup.context";
-import { useUpdateUser } from "../../hooks/reactQuery/useUpdateUser";
 import { useUpdateUserForm } from "../../hooks/useUpdateUserForm";
 import type { ColorUser } from "../../../shared/deeplocal.http";
 import { useTranslation } from "react-i18next";
 import { FormProvider } from "react-hook-form";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router";
 import { UserCircle } from "lucide-react";
 import * as S from "./editProfile.style";
 import { toast } from "react-toastify";
-import { AxiosError } from "axios";
 
 export function EditProfileModalComponent(props: InterfaceEditProfileTriggerProps) {
   const { closePopup } = useContext(PopupContext);
   const { defaultValues, identifier } = props;
 
-  const [selectedTheme, setSelectedTheme] = useState<ColorUser | undefined>(defaultValues.color);
-  const { mutateAsync } = useUpdateUser(identifier);
-  const { form } = useUpdateUserForm({ defaultValues });
-  const { t } = useTranslation("profile");
-  const navigate = useNavigate();
-
-  const toastId = "NOTIFICATION_EDIT_PROFILE_MODAL";
+  const TOAST_ID = "NOTIFICATION_EDIT_PROFILE_MODAL";
   const AUTO_CLOSE = 3000;
+
+  const [selectedTheme, setSelectedTheme] = useState<ColorUser | undefined>(defaultValues.color);
+  const { form, handleUpdateUser } = useUpdateUserForm({
+    defaultValues,
+    autoClose: AUTO_CLOSE,
+    toastId: TOAST_ID,
+    selectedTheme,
+    identifier,
+    closePopup,
+  });
+  const { t } = useTranslation("profile");
 
   const { isValid, isSubmitting } = form.formState;
 
@@ -39,92 +40,10 @@ export function EditProfileModalComponent(props: InterfaceEditProfileTriggerProp
     });
   };
 
-  const handleSubmit = form.handleSubmit(async (data) => {
-    toast.loading(t("COMPONENTS.EDIT_PROFILE.NOTIFICATION.LOADING"), { toastId });
-
-    try {
-      if (data.username !== defaultValues.username) {
-        toast.warning(t("COMPONENTS.EDIT_PROFILE.NOTIFICATION.USERNAME_WARNING"), {
-          autoClose: AUTO_CLOSE * 2,
-          isLoading: false,
-        });
-
-        const { user } = await mutateAsync({ ...data, color: selectedTheme });
-
-        toast.update(toastId, {
-          render: t("COMPONENTS.EDIT_PROFILE.NOTIFICATION.SUCCESS"),
-          type: "success",
-          autoClose: AUTO_CLOSE,
-          isLoading: false,
-        });
-
-        if (user.username === data.username) {
-          localStorage.setItem(CURRENT_USERNAME_KEY, user.username);
-          await navigate(`/p/${user.username}`);
-        }
-
-        return closePopup();
-      }
-
-      await mutateAsync({ ...data, color: selectedTheme });
-
-      toast.update(toastId, {
-        render: t("COMPONENTS.EDIT_PROFILE.NOTIFICATION.SUCCESS"),
-        type: "success",
-        autoClose: AUTO_CLOSE,
-        isLoading: false,
-      });
-
-      closePopup();
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        const code = error.response?.data?.error?.code;
-
-        if (code === "VALIDATION_ERROR_EXCEPTION") {
-          const details = error.response?.data?.error?.details ?? [];
-
-          for (const detail of details) {
-            const field = detail.name as "username" | "nickname" | "bio";
-            const message = detail.reasons?.[0]?.message;
-
-            if (message) {
-              form.setError(field, { message });
-            }
-          }
-
-          return toast.update(toastId, {
-            render: t("COMPONENTS.EDIT_PROFILE.NOTIFICATION.INVALID_FORM"),
-            type: "error",
-            isLoading: false,
-            autoClose: AUTO_CLOSE,
-          });
-        }
-
-        if (code === "USERNAME_ALREADY_IN_USE_EXCEPTION") {
-          form.setError("username", { message: t("COMPONENTS.EDIT_PROFILE.NOTIFICATION.USERNAME_ALREADY_IN_USE") });
-
-          return toast.update(toastId, {
-            render: t("COMPONENTS.EDIT_PROFILE.NOTIFICATION.USERNAME_ALREADY_IN_USE"),
-            type: "error",
-            isLoading: false,
-            autoClose: AUTO_CLOSE,
-          });
-        }
-      }
-
-      return toast.update(toastId, {
-        render: t("COMPONENTS.EDIT_PROFILE.NOTIFICATION.UNEXPECTED"),
-        type: "error",
-        isLoading: false,
-        autoClose: AUTO_CLOSE,
-      });
-    }
-  });
-
   return (
     <>
       <FormProvider {...form}>
-        <S.Form onSubmit={handleSubmit}>
+        <S.Form onSubmit={handleUpdateUser}>
           <InputComponent
             placeholder={t("COMPONENTS.EDIT_PROFILE.FORM.PLACEHOLDERS.NICKNAME")}
             label={t("COMPONENTS.EDIT_PROFILE.FORM.LABELS.NICKNAME")}

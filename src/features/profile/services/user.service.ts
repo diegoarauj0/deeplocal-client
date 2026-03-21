@@ -1,4 +1,4 @@
-import { deepLocalInstance, type IPrivateUser, type IPublicUser } from "../../shared/deeplocal.http";
+import { deepLocalInstance, type InterfacePrivateUser, type InterfacePublicUser } from "../../shared/deeplocal.http";
 
 const USER_ROUTES: Record<string, { URL: (...args: string[]) => string; METHOD: "post" | "get" | "patch" }> = {
   CREATE_BACKGROUND_UPLOAD_URL: { URL: () => "api/users/background/upload-url", METHOD: "post" },
@@ -47,7 +47,7 @@ export interface InterfaceUpdateFileData {
 }
 
 interface InterfaceUpdateFileResponse {
-  user: IPrivateUser;
+  user: InterfacePrivateUser;
 }
 
 export async function updateAvatarService(data: InterfaceUpdateFileData): Promise<InterfaceUpdateFileResponse> {
@@ -71,7 +71,7 @@ export async function updateBackgroundService(data: InterfaceUpdateFileData): Pr
 }
 
 export interface InterfaceUserResponse {
-  user: IPrivateUser;
+  user: InterfacePrivateUser;
 }
 
 export async function getUserService(identifier: string): Promise<InterfaceUserResponse> {
@@ -85,10 +85,10 @@ export async function getUserService(identifier: string): Promise<InterfaceUserR
 }
 
 interface InterfaceUpdateUserData {
-  username?: IPublicUser["username"] | undefined;
-  nickname?: IPublicUser["nickname"] | undefined;
-  color?: IPublicUser["color"] | undefined;
-  bio?: IPublicUser["bio"] | undefined;
+  username?: InterfacePublicUser["username"] | undefined;
+  nickname?: InterfacePublicUser["nickname"] | undefined;
+  color?: InterfacePublicUser["color"] | undefined;
+  bio?: InterfacePublicUser["bio"] | undefined;
 }
 
 export async function updateUserService(data: InterfaceUpdateUserData): Promise<InterfaceUserResponse> {

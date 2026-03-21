@@ -19,11 +19,11 @@ export function useRegisterSchema() {
       .alphanum()
       .required()
       .messages({
-        "string.empty": t("schemas.register.username.required"),
-        "any.required": t("schemas.register.username.required"),
-        "string.min": t("schemas.register.username.min", { min: userConstant.USERNAME_LENGTH_MIN }),
-        "string.max": t("schemas.register.username.max", { max: userConstant.USERNAME_LENGTH_MAX }),
-        "string.alphanum": t("schemas.register.username.alpha"),
+        "string.empty": t("HOOKS.SCHEMAS.USE_REGISTER.USERNAME.REQUIRED"),
+        "any.required": t("HOOKS.SCHEMAS.USE_REGISTER.USERNAME.REQUIRED"),
+        "string.min": t("HOOKS.SCHEMAS.USE_REGISTER.USERNAME.MIN", { min: userConstant.USERNAME_LENGTH_MIN }),
+        "string.max": t("HOOKS.SCHEMAS.USE_REGISTER.USERNAME.MAX", { max: userConstant.USERNAME_LENGTH_MAX }),
+        "string.alphanum": t("HOOKS.SCHEMAS.USE_REGISTER.USERNAME.ALPHA"),
       }),
     email: joi
       .string()
@@ -32,11 +32,11 @@ export function useRegisterSchema() {
       .max(userConstant.EMAIL_LENGTH_MAX)
       .required()
       .messages({
-        "string.empty": t("schemas.register.email.required"),
-        "any.required": t("schemas.register.email.required"),
-        "string.email": t("schemas.register.email.invalid"),
-        "string.min": t("schemas.register.email.min", { min: userConstant.EMAIL_LENGTH_MIN }),
-        "string.max": t("schemas.register.email.max", { max: userConstant.EMAIL_LENGTH_MAX }),
+        "string.empty": t("HOOKS.SCHEMAS.USE_REGISTER.EMAIL.REQUIRED"),
+        "any.required": t("HOOKS.SCHEMAS.USE_REGISTER.EMAIL.REQUIRED"),
+        "string.email": t("HOOKS.SCHEMAS.USE_REGISTER.EMAIL.INVALID"),
+        "string.min": t("HOOKS.SCHEMAS.USE_REGISTER.EMAIL.MIN", { min: userConstant.EMAIL_LENGTH_MIN }),
+        "string.max": t("HOOKS.SCHEMAS.USE_REGISTER.EMAIL.MAX", { max: userConstant.EMAIL_LENGTH_MAX }),
       }),
     password: joi
       .string()
@@ -44,10 +44,10 @@ export function useRegisterSchema() {
       .max(userConstant.PASSWORD_LENGTH_MAX)
       .required()
       .messages({
-        "string.empty": t("schemas.register.password.required"),
-        "any.required": t("schemas.register.password.required"),
-        "string.min": t("schemas.register.password.min", { min: userConstant.PASSWORD_LENGTH_MIN }),
-        "string.max": t("schemas.register.password.max", { max: userConstant.PASSWORD_LENGTH_MAX }),
+        "string.empty": t("HOOKS.SCHEMAS.USE_REGISTER.PASSWORD.REQUIRED"),
+        "any.required": t("HOOKS.SCHEMAS.USE_REGISTER.PASSWORD.REQUIRED"),
+        "string.min": t("HOOKS.SCHEMAS.USE_REGISTER.PASSWORD.MIN", { min: userConstant.PASSWORD_LENGTH_MIN }),
+        "string.max": t("HOOKS.SCHEMAS.USE_REGISTER.PASSWORD.MAX", { max: userConstant.PASSWORD_LENGTH_MAX }),
       }),
   });
 }

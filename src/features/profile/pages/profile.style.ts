@@ -39,6 +39,7 @@ export const Profile = styled.div<{ $background: string | undefined | null }>`
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  overflow-y: auto;
 
   @media (max-width: ${mobileBreakpoint}) {
     padding: 1.25rem 0.25rem 1.5rem;
@@ -63,11 +64,13 @@ export const ProfileTop = styled.div<{ $isBackgroundImage: boolean }>`
   width: 80%;
   max-width: 900px;
   min-width: 600px;
+  margin-bottom: 2rem;
 
   @media (max-width: ${mobileBreakpoint}) {
     width: 100%;
     padding: 1.5rem 0.25rem;
     border-top-color: transparent;
+    min-width: 0px;
   }
 
   @media (max-width: ${phoneBreakpoint}) {
@@ -95,6 +98,9 @@ export const Settings = styled.div`
 
 export const LinksContainer = styled.div`
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const ProfileNickname = styled.div<{ $isBackgroundImage: boolean }>`

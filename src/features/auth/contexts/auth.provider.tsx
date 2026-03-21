@@ -1,5 +1,5 @@
 import { useEffect, useState, type PropsWithChildren } from "react";
-import type { ITokens } from "../../shared/deeplocal.http";
+import type { InterfaceTokens } from "../../shared/deeplocal.http";
 import { AuthContext } from "./auth.context";
 
 export const REFRESH_TOKEN_KEY = "REFRESH_TOKEN";
@@ -32,7 +32,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     setCurrentUsername(username);
   };
 
-  const authenticate = (tokens: ITokens, username: string, id: string) => {
+  const authenticate = (tokens: InterfaceTokens, username: string, id: string) => {
     localStorage.setItem(REFRESH_TOKEN_KEY, tokens.refresh);
     localStorage.setItem(ACCESS_TOKEN_KEY, tokens.access);
     localStorage.setItem(CURRENT_USERNAME_KEY, username);
