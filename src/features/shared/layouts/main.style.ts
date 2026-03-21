@@ -7,4 +7,8 @@ export const Content = styled.main`
   padding: 0.5rem;
   height: 100vh;
   width: 100vw;
+
+  @media screen and (max-width: 768px){
+    padding: 0px;
+  }
 `;

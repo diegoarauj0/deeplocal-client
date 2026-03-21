@@ -35,7 +35,7 @@ function ProfileLoading() {
   );
 }
 
-function ProfileError({ error, identifier }: { error: Error, identifier?: string | undefined }) {
+function ProfileError({ error, identifier }: { error: Error; identifier?: string | undefined }) {
   const { t } = useTranslation("profile");
 
   if (error instanceof AxiosError && error.response?.data.error.code === "USER_NOT_FOUND_EXCEPTION") {

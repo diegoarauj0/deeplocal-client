@@ -28,7 +28,7 @@ export function PopupModal() {
           </S.CloseButton>
         </S.Header>
 
-        {content}
+          {content}
       </S.Modal>
     </S.Overlay>
   );

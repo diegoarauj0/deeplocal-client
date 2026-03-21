@@ -19,7 +19,10 @@ const skeletonMixin = css`
   display: block;
 `;
 
-export const Profile = styled.div<{  $background: string | undefined | null }>`
+const mobileBreakpoint = "768px";
+const phoneBreakpoint = "480px";
+
+export const Profile = styled.div<{ $background: string | undefined | null }>`
   background-image: ${(props) =>
     props.$background
       ? `url("${props.$background}")`
@@ -36,6 +39,16 @@ export const Profile = styled.div<{  $background: string | undefined | null }>`
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+
+  @media (max-width: ${mobileBreakpoint}) {
+    padding: 1.25rem 0.25rem 1.5rem;
+    border-radius: 0px;
+    border-top-color: transparent;
+  }
+
+  @media (max-width: ${phoneBreakpoint}) {
+    padding: 0px;
+  }
 `;
 
 export const ProfileTop = styled.div<{ $isBackgroundImage: boolean }>`
@@ -43,10 +56,24 @@ export const ProfileTop = styled.div<{ $isBackgroundImage: boolean }>`
   justify-content: center;
   flex-wrap: wrap;
   display: flex;
+  gap: 1rem;
   border-top: ${(props) => (props.$isBackgroundImage ? `1px solid ${props.theme.highlight}` : "")};
   border-radius: 1rem;
-  padding: 2rem 0px;
-  width: 60%;
+  padding: 2rem 0;
+  width: 80%;
+  max-width: 900px;
+  min-width: 600px;
+
+  @media (max-width: ${mobileBreakpoint}) {
+    width: 100%;
+    padding: 1.5rem 0.25rem;
+    border-top-color: transparent;
+  }
+
+  @media (max-width: ${phoneBreakpoint}) {
+    padding: 1.25rem 0;
+    border-radius: 0px;
+  }
 `;
 
 export const Settings = styled.div`
@@ -54,6 +81,16 @@ export const Settings = styled.div`
   margin: 1.5rem;
   right: 0%;
   top: 0%;
+
+  @media (max-width: ${mobileBreakpoint}) {
+    margin: 0px;
+    padding: 1rem;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 `;
 
 export const LinksContainer = styled.div`
@@ -62,7 +99,7 @@ export const LinksContainer = styled.div`
 
 export const ProfileNickname = styled.div<{ $isBackgroundImage: boolean }>`
   color: ${(props) => props.theme.text.normal};
-  text-shadow: ${props => props.$isBackgroundImage?`1px 1px 3px ${props.theme.primary.normal}`:"none"} ;
+  text-shadow: ${(props) => (props.$isBackgroundImage ? `1px 1px 3px ${props.theme.primary.normal}` : "none")};
   margin-bottom: 0.5rem;
   text-align: center;
   font-size: 1.5rem;
@@ -88,15 +125,15 @@ export const ProfileBio = styled.div`
   p {
     text-align: center;
     font-weight: 600;
-    width: 50%;
-    max-width: 350px;
+    width: min(90vw, 340px);
+    max-width: 360px;
   }
 `;
 
 export const AvatarSkeleton = styled.div`
   ${skeletonMixin}
-  width: 140px;
-  height: 140px;
+  width: min(140px, 32vw);
+  height: min(140px, 32vw);
   border-radius: 50%;
   border: 5px solid ${(props) => props.theme.bg.light};
   margin-bottom: 1rem;
@@ -136,7 +173,7 @@ export const LinksPlaceholder = styled.div`
 
 export const LinkSkeleton = styled.div`
   ${skeletonMixin}
-  width: 20rem;
+  width: min(90vw, 20rem);
   height: 4rem;
   border-radius: 0.75rem;
 `;
@@ -147,7 +184,7 @@ export const ProfileErrorContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const ProfileError = styled.div`
   width: 100%;

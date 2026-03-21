@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const phoneBreakpoint = "480px";
+
 export const Overlay = styled.div`
   position: fixed;
   inset: 0;
@@ -9,6 +11,11 @@ export const Overlay = styled.div`
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(20px);
   z-index: 1000;
+
+  @media screen and (max-width: ${phoneBreakpoint}) {
+    backdrop-filter: none;
+    background: none;
+  }
 `;
 
 export const Modal = styled.div`
@@ -22,6 +29,15 @@ export const Modal = styled.div`
   background: ${({ theme }) => theme.bg.light};
   border-top: 1px solid ${({ theme }) => theme.highlight};
   box-shadow: 0 25px 60px ${({ theme }) => theme.shadow};
+
+  @media screen and (max-width: ${phoneBreakpoint}) {
+    border-top-color: transparent;
+    border-radius: 0px;
+    padding: 0.5rem;
+    box-shadow: none;
+    height: 100vh;
+    width: 100vw;
+  }
 `;
 
 export const Header = styled.div`
@@ -63,10 +79,5 @@ export const CloseButton = styled.button`
   &:hover {
     background: rgba(0, 0, 0, 0.12);
     transform: translateY(-1px);
-  }
-
-  &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.primary ?? "#7a5dff"};
-    outline-offset: 3px;
   }
 `;
