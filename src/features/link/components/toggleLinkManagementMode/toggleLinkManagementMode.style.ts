@@ -1,0 +1,33 @@
+import styled from "styled-components";
+
+export const Button = styled.button`
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.65rem 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.primary.normal};
+  color: ${({ theme }) => theme.bg.dark};
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+  width: 100%;
+  height: 3rem;
+  margin-bottom: 1rem;
+
+  &:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem;
+  }
+`;

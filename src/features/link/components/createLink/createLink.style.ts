@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 export const TriggerButton = styled.button`
   border: none;
-  border-radius: 999px;
+  border-radius:0.5rem;
   padding: 0.65rem 1.3rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
   background: ${({ theme }) => theme.primary.normal};
   color: ${({ theme }) => theme.bg.dark};
   font-weight: 600;
@@ -15,6 +14,9 @@ export const TriggerButton = styled.button`
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   transition: transform 0.2s ease, filter 0.2s ease;
+  width: 100%;
+  height: 3rem;
+  margin-bottom: 1rem;
 
   &:hover {
     transform: translateY(-1px);
@@ -24,6 +26,7 @@ export const TriggerButton = styled.button`
   svg {
     width: 16px;
     height: 16px;
+    margin-right: 0.50rem;
   }
 `;
 

@@ -59,6 +59,7 @@
   },
   "PAGES": {
     "PROFILE": {
+      "LINK_MANAGEMENT_ENABLED": "Modo de edição ativado.",
       "EMPTY_BIO": "Sem descrição.",
       "UNEXPECTED_ERROR": {
         "TITLE": "Não foi possível acessar o servidor.",

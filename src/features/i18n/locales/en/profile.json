@@ -59,8 +59,8 @@
   },
   "PAGES": {
     "PROFILE": {
+      "LINK_MANAGEMENT_ENABLED": "Edit mode activated.",
       "EMPTY_BIO": "No description.",
-
       "UNEXPECTED_ERROR": {
         "TITLE": "Unable to reach the server.",
         "HELP": "Check your connection or try again in a few moments."

@@ -1,17 +1,12 @@
 import styled from "styled-components";
 
-export const LinksContainer = styled.div`
+export const LinksContainer = styled.div<{ $grab?: boolean; $isLinkManagementMode?: boolean }>`
+  max-width: 560px;
   width: 100%;
   display: flex;
-  justify-content: center;
-  padding-top: 1.5rem;
-`;
-
-export const LinkContainer = styled.div`
-  width: min(560px, 100%);
-  display: flex;
+  align-items: center;
   flex-direction: column;
-  gap: 0.75rem;
+  ${(props) => (props.$isLinkManagementMode ? `cursor: ${props.$grab ? "grabbing" : "grab"};` : "")}
 `;
 
 export const LinksEmpty = styled.p`

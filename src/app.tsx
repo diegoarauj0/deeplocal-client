@@ -1,10 +1,11 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { LinkManagementModeProvider } from "./features/link/contexts/linkManagementMode.provider";
 import { ThemeProvider } from "./features/styles/contexts/theme.provider";
-import { GlobalStyle } from "./features/styles/global.styles";
+import { ToastProvider } from "./features/shared/contexts/toast.provider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./features/auth/contexts/auth.provider";
+import { GlobalStyle } from "./features/styles/global.styles";
 import { router } from "./features/shared/router";
 import { RouterProvider } from "react-router";
-import { ToastProvider } from "./features/shared/contexts/toast.provider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,9 +22,11 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AuthProvider>
-          <GlobalStyle />
-          <ToastProvider />
-          <RouterProvider router={router} />
+          <LinkManagementModeProvider>
+            <GlobalStyle />
+            <ToastProvider />
+            <RouterProvider router={router} />
+          </LinkManagementModeProvider>
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>

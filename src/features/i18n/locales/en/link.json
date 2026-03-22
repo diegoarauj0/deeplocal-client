@@ -24,6 +24,16 @@
         "SUCCESS": "Link added to your profile!",
         "UNEXPECTED": "We couldn't add the link right now. Please try again."
       }
+    },
+    "TOGGLE_LINK_MANAGEMENT_MODE": {
+      "EXIT": "Exit edit mode",
+      "ENTER": "Enter edit mode"
+    },
+    "LINKS": {
+      "NOTIFICATION": {
+        "INVALID_REORDER_LINK": "You can't move to this position while some items are still being processed",
+        "UNEXPECTED": "Couldn't move this item, please try again later."
+      }
     }
   },
   "HOOKS": {

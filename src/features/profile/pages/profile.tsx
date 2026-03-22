@@ -1,3 +1,4 @@
+import { ToggleLinkManagementModeComponent } from "../../link/components/toggleLinkManagementMode/toggleLinkManagementMode";
 import { EditProfileTriggerComponent, type InterfaceDefaultValues } from "../components/editProfile/editProfileTrigger";
 import { ProfileAvatarDisplayComponent } from "../components/profileAvatar/profileAvatarDisplay";
 import { CreateLinkTriggerComponent } from "../../link/components/createLink/createLinkTrigger";
@@ -16,6 +17,7 @@ import { useParams } from "react-router";
 import * as S from "./profile.style";
 import { useContext } from "react";
 import { AxiosError } from "axios";
+import { useLinkManagementModeContext } from "../../link/contexts/linkManagementMode.context";
 
 function ProfileLoading() {
   return (
@@ -81,7 +83,8 @@ export function ProfilePage() {
   const { currentUserId } = useContext(AuthContext);
   const { t } = useTranslation("profile");
   const { identifier } = useParams();
-  
+  const { isLinkManagementMode } = useLinkManagementModeContext();
+
   const {
     data: userResponse,
     isPending: isUserLoading,
@@ -109,14 +112,6 @@ export function ProfilePage() {
     color: user?.color ?? undefined,
   };
 
-  if (isUserLoading || isLinksLoading) {
-    return (
-      <ThemeProvider theme={defaultTheme}>
-        <ProfileLoading />
-      </ThemeProvider>
-    );
-  }
-
   if (isUserError || isLinksError) {
     return (
       <ThemeProvider theme={defaultTheme}>
@@ -124,6 +119,14 @@ export function ProfilePage() {
           <ToggleThemeComponent />
         </S.Settings>
         <ProfileError error={userError} identifier={identifier} />
+      </ThemeProvider>
+    );
+  }
+
+  if (isUserLoading || isLinksLoading) {
+    return (
+      <ThemeProvider theme={defaultTheme}>
+        <ProfileLoading />
       </ThemeProvider>
     );
   }
@@ -140,6 +143,9 @@ export function ProfilePage() {
         ) : null}
       </S.Settings>
       <S.Profile $background={user?.background}>
+        {isLinkManagementMode ? (
+          <S.LinkManagementMode>{t("PAGES.PROFILE.LINK_MANAGEMENT_ENABLED")}</S.LinkManagementMode>
+        ) : null}
         <S.ProfileTop $isBackgroundImage={hasBackgroundImage}>
           <ProfileAvatarDisplayComponent
             identifier={identifier || ""}
@@ -160,8 +166,11 @@ export function ProfilePage() {
           </S.ProfileBio>
         </S.ProfileTop>
         <S.LinksContainer>
-          <CreateLinkTriggerComponent userId={userId || ""} isOwner={isOwner} />
-          <LinksComponent links={links} isOwner={isOwner} />
+          <S.ButtonsContainer>
+            <ToggleLinkManagementModeComponent isOwner={isOwner}  />
+            {isLinkManagementMode ? null : <CreateLinkTriggerComponent userId={userId || ""} isOwner={isOwner} />}
+          </S.ButtonsContainer>
+          <LinksComponent links={links} isOwner={isOwner} userId={userId || ""} />
         </S.LinksContainer>
       </S.Profile>
     </ThemeProvider>

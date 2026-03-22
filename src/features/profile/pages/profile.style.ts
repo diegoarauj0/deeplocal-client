@@ -79,6 +79,17 @@ export const ProfileTop = styled.div<{ $isBackgroundImage: boolean }>`
   }
 `;
 
+export const LinkManagementMode = styled.div`
+  background-color: ${(props) => props.theme.warning};
+  color: ${(props) => props.theme.text.normal};
+  text-align: center;
+  position: absolute;
+  padding: 0.1rem;
+  z-index: 10;
+  width: 100%;
+  top: 0%;
+`;
+
 export const Settings = styled.div`
   position: absolute;
   margin: 1.5rem;
@@ -99,8 +110,8 @@ export const Settings = styled.div`
 export const LinksContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const ProfileNickname = styled.div<{ $isBackgroundImage: boolean }>`
@@ -233,3 +244,9 @@ export const ProfileErrorContent = styled.div`
     font-size: 0.9rem;
   }
 `;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  width: 560px;
+  gap: 1rem;
+`

@@ -24,6 +24,16 @@
         "SUCCESS": "Link adicionado ao seu perfil!",
         "UNEXPECTED": "Não foi possível adicionar o link agora. Tente novamente."
       }
+    },
+    "TOGGLE_LINK_MANAGEMENT_MODE": {
+      "EXIT": "Sair do modo de edição",
+      "ENTER": "Entrar no modo de edição"
+    },
+    "LINKS": {
+      "NOTIFICATION": {
+        "INVALID_REORDER_LINK": "Não é possível mover para essa posição enquanto há itens sendo processados",
+        "UNEXPECTED": "Não foi possível mover esse item, tente novamente mais tarde."
+      }
     }
   },
   "HOOKS": {
