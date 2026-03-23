@@ -1,3 +1,8 @@
+import type {
+  InterfaceCreateUploadUrlData,
+  InterfaceCreateUploadUrlResponse,
+  InterfaceUpdateFileData,
+} from "../../profile/services/user.service";
 import { deepLocalInstance, type InterfacePublicLink } from "../../shared/deeplocal.http";
 
 const LINK_ROUTES: Record<string, { URL: (...args: string[]) => string; METHOD: "post" | "get" | "patch" | "delete" }> =
@@ -9,6 +14,8 @@ const LINK_ROUTES: Record<string, { URL: (...args: string[]) => string; METHOD: 
     UPDATE_LINK: { URL: (id: string) => `api/links/${id}`, METHOD: "patch" },
     DELETE_LINK: { URL: (id: string) => `api/links/${id}`, METHOD: "delete" },
     TOGGLE_VISIBILITY: { URL: (id: string) => `api/links/toggle/${id}`, METHOD: "patch" },
+    CREATE_ICON_UPLOAD_URL: { URL: (id: string) => `/api/links/icon/upload-url/${id}`, METHOD: "post" },
+    UPDATE_ICON: { URL: () => "api/links/icon", METHOD: "patch" },
   };
 
 interface InterfaceCreateLinkData {
@@ -109,5 +116,27 @@ export async function toggleVisibilityService(id: string): Promise<InterfaceLink
 
   const response = await deepLocalInstance[METHOD](URL);
 
+  return response.data;
+}
+
+export async function createIconUploadUrlService(
+  data: InterfaceCreateUploadUrlData & { id: string },
+): Promise<InterfaceCreateUploadUrlResponse> {
+  const METHOD = LINK_ROUTES.CREATE_ICON_UPLOAD_URL.METHOD;
+  const URL = LINK_ROUTES.CREATE_ICON_UPLOAD_URL.URL(data.id);
+
+  console.log(`[LinkService] createIconUploadUrlService ${METHOD.toUpperCase()}: ${URL}`);
+
+  const response = await deepLocalInstance[METHOD](URL, { contentType: data.contentType });
+  return response.data;
+}
+
+export async function updateIconService(data: InterfaceUpdateFileData): Promise<InterfaceLinkResponse> {
+  const METHOD = LINK_ROUTES.UPDATE_ICON.METHOD;
+  const URL = LINK_ROUTES.UPDATE_ICON.URL();
+
+  console.log(`[LinkService] updateIconService ${METHOD.toUpperCase()}: ${URL}`);
+
+  const response = await deepLocalInstance[METHOD](URL, data);
   return response.data;
 }

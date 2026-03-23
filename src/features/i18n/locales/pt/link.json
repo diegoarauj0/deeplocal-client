@@ -68,6 +68,22 @@
           "ERROR": "Não foi possível alterar esse link, tente novamente mais tarde."
         }
       }
+    },
+    "LINK_ICON_UPLOAD": {
+      "TITLE": "Enviar ícone",
+      "DESCRIPTION": "Personalize o ícone visível para esse link.",
+      "PREVIEW_ALT": "Prévia do ícone do link",
+      "UPLOAD_LABEL": "Enviar ícone",
+      "COMMON": {
+        "SEND": "Enviar",
+        "SENDING": "Enviando..."
+      },
+      "NOTIFICATION": {
+        "INVALID_CONTENT_TYPE": "Tipo de arquivo \"{{contentType}}\" não é compatível. Permitidos: \"{{acceptedContentTypes}}\".",
+        "LOADING": "Enviando imagem...",
+        "SUCCESS": "Ícone atualizado com sucesso!",
+        "UNEXPECTED": "Ocorreu um erro ao atualizar o ícone. Tente novamente."
+      }
     }
   },
   "HOOKS": {

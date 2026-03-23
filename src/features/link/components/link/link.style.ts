@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DraggableLinkContainer = styled.div<{ $transform: string | undefined; $disabled: boolean | undefined }>`
+export const DraggableLinkContainer = styled.div<{ $transform: string | undefined; $disabled: boolean | undefined, $enabled: boolean }>`
   ${(props) => (props.$transform ? `transform: ${props.$transform};` : "")}
   width: min(560px, 100%);
   background: ${(props) => props.theme.bg.dark};
@@ -8,6 +8,7 @@ export const DraggableLinkContainer = styled.div<{ $transform: string | undefine
   border-radius: 0.85rem;
   border: 1px dashed rgba(255, 255, 255, 0.2);
   margin-bottom: 1rem;
+  ${props => props.$enabled?"":"opacity: 70%;"}
   ${(props) => (props.$disabled ? "cursor: not-allowed;" : "")}
   ${(props) => (props.$disabled ? "opacity: 50%;" : "")}
   transition: 0.2s;
@@ -44,7 +45,58 @@ export const Link = styled.a`
   }
 `;
 
+export const IconUploadButton = styled.button`
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: inherit;
+  color: ${(props) => props.theme.bg.light};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: white;
+  }
+`;
+
+export const IconWrapper = styled.div<{ $interactive?: boolean }>`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border-radius: 0.75rem;
+  overflow: hidden;
+
+  ${(props) =>
+    props.$interactive
+      ? `
+    cursor: pointer;
+
+    ${IconUploadButton} {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &:hover ${IconUploadButton} {
+      opacity: 1;
+      pointer-events: all;
+    }
+  `
+      : ""}
+`;
+
 export const IconContainer = styled.div`
+  width: 100%;
+  height: 100%;
   border: 1px solid ${(props) => props.theme.border.muted};
   background: ${(props) => props.theme.bg.light};
   border-radius: 0.75rem;
@@ -54,8 +106,8 @@ export const IconContainer = styled.div`
 `;
 
 export const IconImage = styled.img`
-  height: 70%;
-  width: 70%;
+    width: 100%;
+    height: 100%;
 `;
 
 export const IconFallback = styled.span`

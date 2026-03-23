@@ -1,16 +1,17 @@
 import { useLinkManagementModeContext } from "../../contexts/linkManagementMode.context";
 import type { InterfacePublicLink } from "../../../shared/deeplocal.http";
 import { useDeleteLink } from "../../hooks/reactQuery/useDeleteLink";
-import { Eye, EyeClosed, Grip, Pencil, Trash, TriangleAlert } from "lucide-react";
+import { Eye, EyeClosed, Grip, Pencil, Trash, TriangleAlert, Upload } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import * as S from "./link.style";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
-import { useContext } from "react";
+import { type MouseEvent, useContext } from "react";
 import { PopupContext } from "../../../shared/contexts/popup.context";
 import { EditLinkModalComponent } from "../editLink/editLinkModal";
 import { useToggleLink } from "../../hooks/reactQuery/useToggleLink";
+import { UploadLinkIconModalComponent } from "./uploadLinkIconModal";
 
 interface InterfaceLinkProps {
   link: InterfacePublicLink;
@@ -20,13 +21,29 @@ interface InterfaceLinkIconProps {
   fallback: string;
   icon?: string;
   title: string;
+  uploadLabel?: string;
+  onUploadClick?: () => void;
 }
 
-function LinkIconComponent({ icon, title, fallback }: InterfaceLinkIconProps) {
+function LinkIconComponent({ icon, title, fallback, uploadLabel, onUploadClick }: InterfaceLinkIconProps) {
+  const handleUploadClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    onUploadClick?.();
+  };
+
   return (
-    <S.IconContainer>
-      {icon ? <S.IconImage src={icon} alt={`${title} icon`} /> : <S.IconFallback>{fallback}</S.IconFallback>}
-    </S.IconContainer>
+    <S.IconWrapper $interactive={Boolean(onUploadClick)}>
+      <S.IconContainer>
+        {icon ? <S.IconImage src={icon} alt={`${title} icon`} /> : <S.IconFallback>{fallback}</S.IconFallback>}
+      </S.IconContainer>
+      {onUploadClick && (
+        <S.IconUploadButton type="button" aria-label={uploadLabel} onClick={handleUploadClick}>
+          <Upload />
+        </S.IconUploadButton>
+      )}
+    </S.IconWrapper>
   );
 }
 
@@ -113,6 +130,16 @@ export function LinkComponent({ link }: InterfaceLinkProps) {
       }
     };
 
+    const openIconUploadModal = () => {
+      if (disabled) return;
+
+      openPopup(
+        <UploadLinkIconModalComponent link={link} />,
+        t("COMPONENTS.LINK_ICON_UPLOAD.TITLE"),
+        t("COMPONENTS.LINK_ICON_UPLOAD.DESCRIPTION"),
+      );
+    };
+
     const openEditModal = () => {
       if (disabled) return;
 
@@ -124,8 +151,19 @@ export function LinkComponent({ link }: InterfaceLinkProps) {
     };
 
     return (
-      <S.DraggableLinkContainer ref={setNodeRef} $transform={transformStyle} $disabled={disabled}>
-        <LinkIconComponent icon={link.icon ?? undefined} title={link.title} fallback={fallback} />
+      <S.DraggableLinkContainer
+        ref={setNodeRef}
+        $transform={transformStyle}
+        $disabled={disabled}
+        $enabled={link.enabled}
+      >
+        <LinkIconComponent
+          icon={link.icon ?? undefined}
+          title={link.title}
+          fallback={fallback}
+          uploadLabel={t("COMPONENTS.LINK_ICON_UPLOAD.UPLOAD_LABEL")}
+          onUploadClick={disabled ? undefined : openIconUploadModal}
+        />
         <LinkContentComponent link={link} />
         <S.LinkHandlerButton disabled={disabled} $disabled={disabled} type="button" onClick={handleVisibilityLink}>
           {link.enabled ? <Eye /> : <EyeClosed />}

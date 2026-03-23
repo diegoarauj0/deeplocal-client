@@ -11,11 +11,11 @@ const USER_ROUTES: Record<string, { URL: (...args: string[]) => string; METHOD: 
     DELETE_USER: { URL: () => "api/users", METHOD: "delete" },
   };
 
-interface InterfaceCreateUploadUrlData {
+export interface InterfaceCreateUploadUrlData {
   contentType: string;
 }
 
-interface InterfaceCreateUploadUrlResponse {
+export interface InterfaceCreateUploadUrlResponse {
   uploadUrl: string;
   uploadId: string;
 }

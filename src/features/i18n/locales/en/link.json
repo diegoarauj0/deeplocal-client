@@ -68,6 +68,22 @@
           "ERROR": "Unable to edit this link, please try again later."
         }
       }
+    },
+    "LINK_ICON_UPLOAD": {
+      "TITLE": "Upload icon",
+      "DESCRIPTION": "Customize the icon visible for this link.",
+      "PREVIEW_ALT": "Link icon preview",
+      "UPLOAD_LABEL": "Upload icon",
+      "COMMON": {
+        "SEND": "Send",
+        "SENDING": "Sending..."
+      },
+      "NOTIFICATION": {
+        "INVALID_CONTENT_TYPE": "File type \"{{contentType}}\" is not supported. Allowed: \"{{acceptedContentTypes}}\".",
+        "LOADING": "Uploading image...",
+        "SUCCESS": "Icon updated successfully!",
+        "UNEXPECTED": "An error occurred while updating the icon. Please try again."
+      }
     }
   },
   "HOOKS": {
