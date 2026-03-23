@@ -1,0 +1,105 @@
+{
+  "COMPONENTS": {
+    "LINKS_COMPONENT": {
+      "PROFILE_OWNER_EMPTY": "Ainda não há links. Use o botão acima para adicionar o primeiro.",
+      "EMPTY": "Esse usuário ainda não adicionou nenhum link."
+    },
+    "CREATE_LINK": {
+      "TRIGGER": "Adicionar link",
+      "TITLE": "Adicionar novo link",
+      "DESCRIPTION": "Compartilhe outro destino para quem visita seu perfil.",
+      "FORM": {
+        "LABELS": {
+          "TITLE": "Título",
+          "URL": "URL"
+        },
+        "PLACEHOLDERS": {
+          "TITLE": "Meu portfólio",
+          "URL": "https://exemplo.com"
+        },
+        "SUBMIT": "Salvar link",
+        "SUBMIT_LOADING": "Salvando..."
+      },
+      "NOTIFICATION": {
+        "SUCCESS": "Link adicionado ao seu perfil!",
+        "UNEXPECTED": "Não foi possível adicionar o link agora. Tente novamente."
+      }
+    },
+    "EDIT_LINK": {
+      "TITLE": "Editar link",
+      "FORM": {
+        "LABELS": {
+          "TITLE": "Título",
+          "URL": "URL"
+        },
+        "PLACEHOLDERS": {
+          "TITLE": "Meu portfólio",
+          "URL": "https://exemplo.com"
+        },
+        "SUBMIT": "Salvar alterações",
+        "SUBMIT_LOADING": "Salvando..."
+      },
+      "NOTIFICATION": {
+        "SUCCESS": "Link atualizado com sucesso!",
+        "UNEXPECTED": "Não foi possível salvar as alterações. Tente novamente.",
+        "INVALID_FORM": "Corrija os campos marcados."
+      }
+    },
+    "TOGGLE_LINK_MANAGEMENT_MODE": {
+      "EXIT": "Sair do modo de edição",
+      "ENTER": "Entrar no modo de edição"
+    },
+    "LINKS": {
+      "NOTIFICATION": {
+        "INVALID_REORDER_LINK": "Não é possível mover para essa posição enquanto há itens sendo processados",
+        "UNEXPECTED": "Não foi possível mover esse item, tente novamente mais tarde."
+      }
+    },
+    "LINK": {
+      "NOTIFICATION": {
+        "DELETE_LINK": {
+          "SUCCESS": "Link foi deletado do seu perfil.",
+          "LOADING": "Deletando link...",
+          "ERROR": "Não foi possível deletar esse link, tente novamente mais tarde."
+        },
+        "TOGGLE_VISIBILITY_LINK": {
+          "SUCCESS": "A visibilidade do link foi alterada.",
+          "LOADING": "Editando o link...",
+          "ERROR": "Não foi possível alterar esse link, tente novamente mais tarde."
+        }
+      }
+    },
+    "LINK_ICON_UPLOAD": {
+      "TITLE": "Enviar ícone",
+      "DESCRIPTION": "Personalize o ícone visível para esse link.",
+      "PREVIEW_ALT": "Prévia do ícone do link",
+      "UPLOAD_LABEL": "Enviar ícone",
+      "COMMON": {
+        "SEND": "Enviar",
+        "SENDING": "Enviando..."
+      },
+      "NOTIFICATION": {
+        "INVALID_CONTENT_TYPE": "Tipo de arquivo \"{{contentType}}\" não é compatível. Permitidos: \"{{acceptedContentTypes}}\".",
+        "LOADING": "Enviando imagem...",
+        "SUCCESS": "Ícone atualizado com sucesso!",
+        "UNEXPECTED": "Ocorreu um erro ao atualizar o ícone. Tente novamente."
+      }
+    }
+  },
+  "HOOKS": {
+    "SCHEMAS": {
+      "USE_CREATE_LINK": {
+        "TITLE": {
+          "REQUIRED": "O título do link é obrigatório.",
+          "MIN": "O título deve ter ao menos {{min}} caracteres.",
+          "MAX": "O título não pode passar de {{max}} caracteres.",
+          "ALPHA": "O título deve conter apenas letras e números."
+        },
+        "URL": {
+          "REQUIRED": "A URL é obrigatória.",
+          "INVALID": "Informe uma URL válida."
+        }
+      }
+    }
+  }
+}

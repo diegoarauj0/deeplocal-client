@@ -1,0 +1,94 @@
+{
+  "COMPONENTS": {
+    "PROFILE_AVATAR": {
+      "TITLE": "Enviar avatar",
+      "DESCRIPTION": "Personalize seu avatar.",
+      "PREVIEW_ALT": "Preview do avatar",
+      "NOTIFICATION": {
+        "INVALID_CONTENT_TYPE": "Formato \"{{contentType}}\" não suportado. Use: \"{{acceptedContentTypes}}\".",
+        "LOADING": "Enviando imagem...",
+        "SUCCESS": "Avatar atualizado com sucesso!",
+        "UNEXPECTED": "Ocorreu um erro ao atualizar o avatar. Tente novamente."
+      }
+    },
+    "COMMON": {
+      "SEND": "Enviar",
+      "SENDING": "Enviando..."
+    },
+    "EDIT_BACKGROUND": {
+      "TITLE": "Enviar Background",
+      "DESCRIPTION": "Personalize a imagem de fundo que irar aparecer na sua pagina.",
+      "PREVIEW_ALT": "Preview do fundo",
+      "NOTIFICATION": {
+        "INVALID_CONTENT_TYPE": "Formato \"{{contentType}}\" não suportado. Use: \"{{acceptedContentTypes}}\".",
+        "LOADING": "Enviando imagem...",
+        "SUCCESS": "Plano de fundo atualizado com sucesso!",
+        "UNEXPECTED": "Ocorreu um erro ao atualizar o plano de fundo. Tente novamente."
+      }
+    },
+    "EDIT_PROFILE": {
+      "TITLE": "Configurações",
+      "DESCRIPTION": "Personalize seu perfil e tema.",
+      "SUBMIT": "Atualizar",
+      "SUBMIT_LOADING": "Salvando...",
+      "THEME_TITLE": "Tema de cor",
+      "THEME_SELECT": "Selecionar tema {{theme}}",
+      "FORM": {
+        "PLACEHOLDERS": {
+          "USERNAME": "Seu nome de usuário",
+          "NICKNAME": "Seu apelido",
+          "BIO": "Fale um pouco sobre você."
+        },
+        "LABELS": {
+          "USERNAME": "Username",
+          "NICKNAME": "Nickname",
+          "BIO": "Bio"
+        }
+      },
+      "NOTIFICATION": {
+        "THEME_SELECTED": "Tema \"{{theme}}\" selecionado.",
+        "LOADING": "Salvando alterações...",
+        "THEME_SELECT": "Selecionar tema {{theme}}",
+        "USERNAME_WARNING": "Alterar o nome de usuário pode afetar como outras pessoas encontram você.",
+        "SUCCESS": "Perfil atualizado com sucesso!",
+        "UNEXPECTED": "Ocorreu um erro inesperado. Tente novamente.",
+        "USERNAME_ALREADY_IN_USE": "Este nome de usuário já está em uso.",
+        "INVALID_FORM": "Por favor, preencha todos os campos corretamente."
+      }
+    }
+  },
+  "PAGES": {
+    "PROFILE": {
+      "LINK_MANAGEMENT_ENABLED": "Modo de edição ativado.",
+      "EMPTY_BIO": "Sem descrição.",
+      "UNEXPECTED_ERROR": {
+        "TITLE": "Não foi possível acessar o servidor.",
+        "HELP": "Verifique sua conexão ou tente novamente daqui a alguns instantes."
+      },
+      "NOT_FOUND_ERROR": {
+        "TITLE": "\"{{identifier}}\" Não foi encontrado.",
+        "HELP": "Esse usuários não existe ou foi deletado, verifique se a url esta certa."
+      }
+    }
+  },
+  "HOOKS": {
+    "USE_UPDATE_USER": {
+      "USERNAME": {
+        "REQUIRED": "O nome de usuário é obrigatório.",
+        "MIN": "O nome de usuário deve ter ao menos {{min}} caracteres.",
+        "MAX": "O nome de usuário não pode passar de {{max}} caracteres.",
+        "ALPHA": "O nome de usuário deve conter apenas letras e números."
+      },
+      "NICKNAME": {
+        "REQUIRED": "O nickname é obrigatório.",
+        "MIN": "O nickname deve ter ao menos {{min}} caracteres.",
+        "MAX": "O nickname não pode passar de {{max}} caracteres.",
+        "ALPHA": "O nickname deve conter apenas letras e números."
+      },
+      "BIO": {
+        "MIN": "A bio deve ter ao menos {{min}} caracteres.",
+        "MAX": "A bio não pode passar de {{max}} caracteres."
+      }
+    }
+  }
+}

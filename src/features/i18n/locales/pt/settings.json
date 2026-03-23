@@ -1,0 +1,52 @@
+{
+  "PAGES": {
+    "GENERAL": {
+      "LANGUAGE": {
+        "TITLE": "Idioma do site",
+        "SUBTITLE": "Escolha o idioma usado na interface e nas mensagens automáticas que o site apresenta.",
+        "LABEL": "Idioma atual",
+        "HELPER": "O idioma escolhido é aplicado imediatamente durante a navegação.",
+        "BUTTON": "Mudar idioma",
+        "OPTIONS": {
+          "ENGLISH": "English (US)",
+          "PORTUGUESE": "Português (Brasil)"
+        }
+      },
+      "THEME": {
+        "TITLE": "Tema",
+        "SUBTITLE": "Defina se o site deve seguir o modo claro, escuro ou o padrão do seu sistema.",
+        "LABEL": "Modo atual",
+        "HELPER": "Detectado no sistema: {{mode}}. Essa escolha altera apenas o visual do painel de configurações.",
+        "BUTTON": "Mudar tema",
+        "OPTIONS": {
+          "SYSTEM": "Detectar automaticamente (modo do sistema)",
+          "LIGHT": "Claro",
+          "DARK": "Escuro"
+        },
+        "DETECTED": {
+          "LIGHT": "Claro",
+          "DARK": "Escuro"
+        }
+      }
+    },
+    "SECURITY": {
+      "NOTIFICATION": {
+        "LOGOUT_CURRENT": {
+          "SUCCESS": "Você foi desconectado desta sessão.",
+          "ERROR": "Não foi possível desconectar a sessão atual.",
+          "LOADING": "Desconectando esta sessão..."
+        },
+        "LOGOUT_ALL": {
+          "SUCCESS": "Todas as sessões foram encerradas.",
+          "ERROR": "Não foi possível encerrar todas as sessões.",
+          "LOADING": "Desconectando todas as sessões..."
+        },
+        "DELETE_ACCOUNT": {
+          "SUCCESS": "Seu usuário foi deletado.",
+          "ERROR": "Falha ao deletar o usuário.",
+          "LOADING": "Deletando seu usuário..."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "PAGES": {
+    "GENERAL": {
+      "LANGUAGE": {
+        "TITLE": "Site language",
+        "SUBTITLE": "Choose the language used in the interface and the automatic messages the site displays.",
+        "LABEL": "Current language",
+        "HELPER": "The selected language applies immediately while navigating the app.",
+        "BUTTON": "Change language",
+        "OPTIONS": {
+          "ENGLISH": "English (US)",
+          "PORTUGUESE": "Portuguese (Brazil)"
+        }
+      },
+      "THEME": {
+        "TITLE": "Theme",
+        "SUBTITLE": "Set the site to use light, dark, or follow your system preference.",
+        "LABEL": "Current mode",
+        "HELPER": "Detected on the system: {{mode}}. This choice only affects the control panel appearance.",
+        "BUTTON": "Change theme",
+        "OPTIONS": {
+          "SYSTEM": "Detect automatically (system preference)",
+          "LIGHT": "Light",
+          "DARK": "Dark"
+        },
+        "DETECTED": {
+          "LIGHT": "Light",
+          "DARK": "Dark"
+        }
+      }
+    },
+    "SECURITY": {
+      "NOTIFICATION": {
+        "LOGOUT_CURRENT": {
+          "SUCCESS": "You have been logged out of the current session.",
+          "ERROR": "Unable to log out of the current session.",
+          "LOADING": "Logging out of the current session..."
+        },
+        "LOGOUT_ALL": {
+          "SUCCESS": "All sessions were terminated.",
+          "ERROR": "Unable to log out all sessions.",
+          "LOADING": "Logging out of all sessions..."
+        },
+        "DELETE_ACCOUNT": {
+          "SUCCESS": "Your account was deleted.",
+          "ERROR": "Failed to delete the account.",
+          "LOADING": "Deleting your account..."
+        }
+      }
+    }
+  }
+}

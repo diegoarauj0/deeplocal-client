@@ -1,0 +1,96 @@
+{
+  "COMPONENTS": {
+    "PROFILE_AVATAR": {
+      "TITLE": "Upload avatar",
+      "DESCRIPTION": "Customize your avatar.",
+      "PREVIEW_ALT": "Avatar preview",
+      "NOTIFICATION": {
+        "INVALID_CONTENT_TYPE": "File type \"{{contentType}}\" is not supported. Allowed: \"{{acceptedContentTypes}}\".",
+        "LOADING": "Uploading image...",
+        "SUCCESS": "Avatar updated successfully!",
+        "UNEXPECTED": "An error occurred while updating the avatar. Please try again."
+      }
+    },
+    "COMMON": {
+      "SEND": "Send",
+      "SENDING": "Sending..."
+    },
+    "EDIT_BACKGROUND": {
+      "TITLE": "Upload Background",
+      "DESCRIPTION": "Customize the background image that will appear on your page.",
+      "PREVIEW_ALT": "Background preview",
+      "NOTIFICATION": {
+        "INVALID_CONTENT_TYPE": "File type \"{{contentType}}\" is not supported. Allowed: \"{{acceptedContentTypes}}\".",
+        "LOADING": "Uploading image...",
+        "SUCCESS": "Background updated successfully!",
+        "UNEXPECTED": "An error occurred while updating the background. Please try again."
+      }
+    },
+    "EDIT_PROFILE": {
+      "TITLE": "Settings",
+      "DESCRIPTION": "Customize your profile and theme.",
+      "SUBMIT": "Update",
+      "SUBMIT_LOADING": "Saving...",
+      "THEME_TITLE": "Color theme",
+      "THEME_SELECT": "Select theme {{theme}}",
+      "FORM": {
+        "PLACEHOLDERS": {
+          "USERNAME": "Your username",
+          "NICKNAME": "Your nickname",
+          "BIO": "Tell something about yourself."
+        },
+        "LABELS": {
+          "USERNAME": "Username",
+          "NICKNAME": "Nickname",
+          "BIO": "Bio"
+        }
+      },
+      "NOTIFICATION": {
+        "THEME_SELECTED": "Theme \"{{theme}}\" selected.",
+        "LOADING": "Saving changes...",
+        "THEME_SELECT": "Select theme {{theme}}",
+        "USERNAME_WARNING": "Changing your username may affect how others find you.",
+        "SUCCESS": "Profile updated successfully!",
+        "UNEXPECTED": "An unexpected error occurred. Please try again.",
+        "USERNAME_ALREADY_IN_USE": "This username is already in use.",
+        "INVALID_FORM": "Please fill out all fields correctly."
+      }
+    }
+  },
+  "PAGES": {
+    "PROFILE": {
+      "LINK_MANAGEMENT_ENABLED": "Edit mode activated.",
+      "EMPTY_BIO": "No description.",
+      "UNEXPECTED_ERROR": {
+        "TITLE": "Unable to reach the server.",
+        "HELP": "Check your connection or try again in a few moments."
+      },
+      "NOT_FOUND_ERROR": {
+        "TITLE": "\"{{identifier}}\" could not be found..",
+        "HELP": "This user either doesn't exist or has been deleted. Please verify that the URL is correct."
+      }
+    }
+  },
+  "HOOKS": {
+    "SCHEMAS": {
+      "USE_UPDATE_USER": {
+        "USERNAME": {
+          "REQUIRED": "Username is required.",
+          "MIN": "Username must be at least {{min}} characters.",
+          "MAX": "Username must not exceed {{max}} characters.",
+          "ALPHA": "Username must contain only letters and numbers."
+        },
+        "NICKNAME": {
+          "REQUIRED": "Nickname is required.",
+          "MIN": "Nickname must be at least {{min}} characters.",
+          "MAX": "Nickname must not exceed {{max}} characters.",
+          "ALPHA": "Nickname must contain only letters and numbers."
+        },
+        "BIO": {
+          "MIN": "Bio must be at least {{min}} characters.",
+          "MAX": "Bio must not exceed {{max}} characters."
+        }
+      }
+    }
+  }
+}
