@@ -1,75 +1,36 @@
-# React + TypeScript + Vite
+# DeepLocal Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 
-Currently, two official plugins are available:
+## 📚 Visão geral
+Este projeto é o client web (front-end) do [DeepLocal](https://github.com/diegoarauj0/deeplocal-server), responsável pela interface e experiência do usuário na plataforma.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🖥️ Tecnologias principais
+- **React 19 + Vite 8**
+- **TypeScript 5.9**
+- **TanStack Query 5**
+- **React Hook Form + Joi**
+- **Styled Components 6**
+- **React Router 7**
+- **React Toastify**
 
-## React Compiler
+## ☁️ Pré-requisitos
+- Node.js 24+ (recomendado)
+- npm 10+ (ou yarn/pnpm; ajuste os comandos conforme o gerenciador escolhido)
+- Backend DeepLocal (API) acessível para consumir os endpoints mencionados no cliente.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Instalação rápida
+```bash
+git clone https://github.com/diegoarauj0/deeplocal-client.git
+cd deeplocal-client
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📂 Estrutura relevante
+- `src/app.tsx` — envolve o app com provedores (Theme, QueryClient, Auth, Toast).
+- `src/features` — módulos por domínio (auth, home, link, profile, settings, estilos, compartilhado).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📝 Licença
+Este projeto é licenciado sob [MIT](LICENSE.md). Veja o arquivo para mais detalhes.

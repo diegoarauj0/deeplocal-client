@@ -1,4 +1,4 @@
-import { useEffect, useState, type PropsWithChildren } from "react";
+import { useCallback, useEffect, useState, type PropsWithChildren } from "react";
 import type { InterfaceTokens } from "../../shared/deeplocal.http";
 import { AuthContext } from "./auth.context";
 
@@ -19,7 +19,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const [currentUserId, setCurrentUserId] = useState<string | null>(userId);
   const [currentUsername, setCurrentUsername] = useState<string | null>(username);
 
-  const syncFromStorage = () => {
+  const syncFromStorage = useCallback(() => {
     const refresh = localStorage.getItem(REFRESH_TOKEN_KEY);
     const access = localStorage.getItem(ACCESS_TOKEN_KEY);
     const userId = localStorage.getItem(CURRENT_USER_ID_KEY);
@@ -32,7 +32,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     setAuthenticated(isAuthenticated);
     setCurrentUserId(userId);
     setCurrentUsername(username);
-  };
+  }, [authenticated]);
 
   const authenticate = (tokens: InterfaceTokens, username: string, id: string) => {
     localStorage.setItem(REFRESH_TOKEN_KEY, tokens.refresh);
@@ -66,7 +66,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     }, 2000);
 
     return () => clearInterval(IntervalId);
-  }, []);
+  }, [syncFromStorage]);
 
   return (
     <AuthContext.Provider
