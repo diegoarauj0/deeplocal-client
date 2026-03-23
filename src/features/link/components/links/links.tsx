@@ -23,7 +23,7 @@ export function LinksComponent({ links, isOwner, userId }: InterfaceLinksProps) 
 
   const [grab, setGrab] = useState(false);
 
-  if (links.length === 0) {
+  if (links.filter((link) => link.enabled).length === 0 && !isLinkManagementMode) {
     return (
       <S.LinksContainer $isLinkManagementMode={isLinkManagementMode}>
         <S.LinksEmpty>
@@ -49,10 +49,8 @@ export function LinksComponent({ links, isOwner, userId }: InterfaceLinksProps) 
       const overLink = linksMap.get(over.id as string);
 
       if (!target || !overLink) return;
-      //COMPONENTS.LINKS.NOTIFICATIONS.INVALID_REORDER_LINK
-      //COMPONENTS.LINKS.NOTIFICATIONS.UNEXPECTED
       if (target.ID.startsWith("temp-") || overLink.ID.startsWith("temp-")) {
-        return toast("Não é possível mover para essa posição enquanto há itens sendo processados", {
+        return toast(t("COMPONENTS.LINKS.NOTIFICATION.INVALID_REORDER_LINK"), {
           toastId,
           type: "warning",
           autoClose: 3000,
@@ -67,7 +65,7 @@ export function LinksComponent({ links, isOwner, userId }: InterfaceLinksProps) 
         mutate({ id: target.ID, afterId: overLink.ID });
       }
     } catch {
-      toast("Não foi possível mover esse item, tente novamente mais tarde.", {
+      toast(t("COMPONENTS.LINKS.NOTIFICATION.UNEXPECTED"), {
         toastId,
         type: "error",
         autoClose: 5000,

@@ -6,49 +6,36 @@ export const DraggableLinkContainer = styled.div<{ $transform: string | undefine
   background: ${(props) => props.theme.bg.dark};
   border: 1px solid ${(props) => props.theme.border.normal};
   border-radius: 0.85rem;
-  padding: 0.85rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  position: relative;
   border: 1px dashed rgba(255, 255, 255, 0.2);
   margin-bottom: 1rem;
-  text-decoration: none;
-  color: inherit;
   ${(props) => (props.$disabled ? "cursor: not-allowed;" : "")}
   ${(props) => (props.$disabled ? "opacity: 50%;" : "")}
-    
   transition: 0.2s;
+  user-select: none;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  grid-template-columns: 50px auto 50px 50px 50px 50px;
+  grid-template-rows: 50px;
 
   &:hover {
     border-color: ${(props) => (props.$disabled ? props.theme.danger : props.theme.primary.normal)};
-  }
-
-  svg {
-    filter: invert(100%) opacity(30%);
-    position: absolute;
-    height: 25px;
-    width: 25px;
-    right: 5%;
   }
 `;
 
 export const Link = styled.a`
   width: min(560px, 100%);
-  margin-bottom: 1rem;
   background: ${(props) => props.theme.bg.dark};
   border: 1px solid ${(props) => props.theme.border.normal};
   border-radius: 0.85rem;
+  margin-bottom: 1rem;
+  transition: 0.2s;
+  display: grid;
+  gap: 0.5rem;
   padding: 0.85rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  grid-template-columns: 50px auto;
+  grid-template-rows: 50px;
   text-decoration: none;
-  color: inherit;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
 
   &:hover {
     border-color: ${(props) => props.theme.primary.normal};
@@ -58,48 +45,69 @@ export const Link = styled.a`
 `;
 
 export const IconContainer = styled.div`
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  border-radius: 0.75rem;
   border: 1px solid ${(props) => props.theme.border.muted};
   background: ${(props) => props.theme.bg.light};
-  display: grid;
+  border-radius: 0.75rem;
   place-items: center;
   overflow: hidden;
+  display: grid;
 `;
 
 export const IconImage = styled.img`
-  width: 70%;
   height: 70%;
-  object-fit: contain;
+  width: 70%;
 `;
 
 export const IconFallback = styled.span`
-  font-size: 1.25rem;
-  font-weight: 600;
   color: ${(props) => props.theme.text.normal};
   text-transform: uppercase;
+  font-size: 1.25rem;
+  font-weight: 600;
 `;
 
 export const TitleContainer = styled.div`
-  display: flex;
+  justify-content: center;
   flex-direction: column;
-  gap: 0.15rem;
   overflow: hidden;
+  display: flex;
+  gap: 0.15rem;
 `;
 
 export const Title = styled.span`
-  font-size: 1rem;
-  font-weight: 600;
   color: ${(props) => props.theme.text.normal};
-  white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 1rem;
+  overflow: hidden;
 `;
 
 export const Url = styled.span`
   font-size: 0.85rem;
   color: ${(props) => props.theme.text.muted};
   word-break: break-all;
+`;
+
+export const LinkHandlerButton = styled.button<{ $disabled?: boolean }>`
+  transition: 0.4s;
+  color: ${(props) => props.theme.text.normal};
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  cursor: ${(props) => (props.$disabled ? "not-allowed" : "pointer")};
+  ${(props) => (props.$disabled ? "opacity: 50%;" : `&:hover {transition: 0.2s;transform: translateY(-3px);}`)}
+`;
+
+
+export const GripIconContainer = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  svg {
+    filter: invert(100%) opacity(30%);
+    height: 50%;
+    width: 50%;
+  }
 `;

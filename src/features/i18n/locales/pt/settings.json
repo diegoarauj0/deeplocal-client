@@ -30,7 +30,7 @@
       }
     },
     "SECURITY": {
-      "NOTIFICATIONS": {
+      "NOTIFICATION": {
         "LOGOUT_CURRENT": {
           "SUCCESS": "Você foi desconectado desta sessão.",
           "ERROR": "Não foi possível desconectar a sessão atual.",

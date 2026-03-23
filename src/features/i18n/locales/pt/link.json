@@ -25,6 +25,26 @@
         "UNEXPECTED": "Não foi possível adicionar o link agora. Tente novamente."
       }
     },
+    "EDIT_LINK": {
+      "TITLE": "Editar link",
+      "FORM": {
+        "LABELS": {
+          "TITLE": "Título",
+          "URL": "URL"
+        },
+        "PLACEHOLDERS": {
+          "TITLE": "Meu portfólio",
+          "URL": "https://exemplo.com"
+        },
+        "SUBMIT": "Salvar alterações",
+        "SUBMIT_LOADING": "Salvando..."
+      },
+      "NOTIFICATION": {
+        "SUCCESS": "Link atualizado com sucesso!",
+        "UNEXPECTED": "Não foi possível salvar as alterações. Tente novamente.",
+        "INVALID_FORM": "Corrija os campos marcados."
+      }
+    },
     "TOGGLE_LINK_MANAGEMENT_MODE": {
       "EXIT": "Sair do modo de edição",
       "ENTER": "Entrar no modo de edição"
@@ -33,6 +53,20 @@
       "NOTIFICATION": {
         "INVALID_REORDER_LINK": "Não é possível mover para essa posição enquanto há itens sendo processados",
         "UNEXPECTED": "Não foi possível mover esse item, tente novamente mais tarde."
+      }
+    },
+    "LINK": {
+      "NOTIFICATION": {
+        "DELETE_LINK": {
+          "SUCCESS": "Link foi deletado do seu perfil.",
+          "LOADING": "Deletando link...",
+          "ERROR": "Não foi possível deletar esse link, tente novamente mais tarde."
+        },
+        "TOGGLE_VISIBILITY_LINK": {
+          "SUCCESS": "A visibilidade do link foi alterada.",
+          "LOADING": "Editando o link...",
+          "ERROR": "Não foi possível alterar esse link, tente novamente mais tarde."
+        }
       }
     }
   },

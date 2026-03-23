@@ -30,7 +30,7 @@
       }
     },
     "SECURITY": {
-      "NOTIFICATIONS": {
+      "NOTIFICATION": {
         "LOGOUT_CURRENT": {
           "SUCCESS": "You have been logged out of the current session.",
           "ERROR": "Unable to log out of the current session.",

@@ -19,16 +19,16 @@ export function SecuritySettingsPage() {
   const AUTO_CLOSE = 6000;
 
   const handleCurrentLogout = async () => {
-    toast.loading(t("PAGES.SECURITY.NOTIFICATIONS.LOGOUT_CURRENT.LOADING"), {
-      isLoading: true,
+    toast.loading(t("PAGES.SECURITY.NOTIFICATION.LOGOUT_CURRENT.LOADING"), {
       toastId: LOGOUT_NOTIFICATION_ID,
+      isLoading: true,
     });
 
     try {
       await logoutService();
 
       toast.update(LOGOUT_NOTIFICATION_ID, {
-        render: t("PAGES.SECURITY.NOTIFICATIONS.LOGOUT_CURRENT.SUCCESS"),
+        render: t("PAGES.SECURITY.NOTIFICATION.LOGOUT_CURRENT.SUCCESS"),
         autoClose: AUTO_CLOSE,
         isLoading: false,
         type: "success",
@@ -37,7 +37,7 @@ export function SecuritySettingsPage() {
       deauthenticate();
     } catch {
       toast.update(LOGOUT_NOTIFICATION_ID, {
-        render: t("PAGES.SECURITY.NOTIFICATIONS.LOGOUT_CURRENT.ERROR"),
+        render: t("PAGES.SECURITY.NOTIFICATION.LOGOUT_CURRENT.ERROR"),
         autoClose: AUTO_CLOSE,
         isLoading: false,
         type: "error",
@@ -46,7 +46,7 @@ export function SecuritySettingsPage() {
   };
 
   const handleLogoutEverywhere = async () => {
-    toast.loading(t("PAGES.SECURITY.NOTIFICATIONS.LOGOUT_ALL.LOADING"), {
+    toast.loading(t("PAGES.SECURITY.NOTIFICATION.LOGOUT_ALL.LOADING"), {
       isLoading: true,
       toastId: LOGOUT_ALL_NOTIFICATION_ID,
     });
@@ -55,7 +55,7 @@ export function SecuritySettingsPage() {
       await logoutAllService({ deleteCurrentSession: includeCurrentSession });
 
       toast.update(LOGOUT_ALL_NOTIFICATION_ID, {
-        render: t("PAGES.SECURITY.NOTIFICATIONS.LOGOUT_ALL.SUCCESS"),
+        render: t("PAGES.SECURITY.NOTIFICATION.LOGOUT_ALL.SUCCESS"),
         autoClose: AUTO_CLOSE,
         isLoading: false,
         type: "success",
@@ -64,7 +64,7 @@ export function SecuritySettingsPage() {
       if (includeCurrentSession) deauthenticate();
     } catch {
       toast.update(LOGOUT_ALL_NOTIFICATION_ID, {
-        render: t("PAGES.SECURITY.NOTIFICATIONS.LOGOUT_ALL.ERROR"),
+        render: t("PAGES.SECURITY.NOTIFICATION.LOGOUT_ALL.ERROR"),
         autoClose: AUTO_CLOSE,
         isLoading: false,
         type: "error",
@@ -73,7 +73,7 @@ export function SecuritySettingsPage() {
   };
 
   const handleDeleteAccount = async () => {
-    toast.loading(t("PAGES.SECURITY.NOTIFICATIONS.DELETE_ACCOUNT.LOADING"), {
+    toast.loading(t("PAGES.SECURITY.NOTIFICATION.DELETE_ACCOUNT.LOADING"), {
       isLoading: true,
       toastId: DELETE_USER_NOTIFICATION_ID,
     });
@@ -82,7 +82,7 @@ export function SecuritySettingsPage() {
       await deleteUserService();
 
       toast.update(DELETE_USER_NOTIFICATION_ID, {
-        render: t("PAGES.SECURITY.NOTIFICATIONS.DELETE_ACCOUNT.SUCCESS"),
+        render: t("PAGES.SECURITY.NOTIFICATION.DELETE_ACCOUNT.SUCCESS"),
         autoClose: AUTO_CLOSE,
         isLoading: false,
         type: "success",
@@ -91,7 +91,7 @@ export function SecuritySettingsPage() {
       deauthenticate();
     } catch {
       toast.update(DELETE_USER_NOTIFICATION_ID, {
-        render: t("PAGES.SECURITY.NOTIFICATIONS.DELETE_ACCOUNT.ERROR"),
+        render: t("PAGES.SECURITY.NOTIFICATION.DELETE_ACCOUNT.ERROR"),
         autoClose: AUTO_CLOSE,
         isLoading: false,
         type: "error",
