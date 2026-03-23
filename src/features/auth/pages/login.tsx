@@ -1,4 +1,3 @@
-import { ToggleThemeComponent } from "../../styles/components/toggleTheme";
 import { InputComponent } from "../../shared/components/input/input";
 import { RectangleEllipsis, AtSign } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -13,9 +12,6 @@ export function LoginPage() {
 
   return (
     <S.AuthCard>
-      <S.Settings>
-        <ToggleThemeComponent />
-      </S.Settings>
       <S.AuthTitle>{t("PAGES.LOGIN.TITLE")}</S.AuthTitle>
       <S.AuthDescription>{t("PAGES.LOGIN.DESCRIPTION")}</S.AuthDescription>
       <FormProvider {...form}>

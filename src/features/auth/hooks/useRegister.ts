@@ -20,7 +20,7 @@ export function useRegister() {
   });
 
   async function onSubmit(data: IRegisterSchema) {
-    toast.loading(t("HOOKS.REGISTER.NOTIFICATION.LOADING"), { toastId });
+    toast.loading(t("HOOKS.USE_REGISTER.NOTIFICATION.LOADING"), { toastId });
 
     try {
       const { tokens, user } = await signUpService(data);
@@ -28,7 +28,7 @@ export function useRegister() {
       authenticate(tokens, user.username, user.ID);
 
       toast.update(toastId, {
-        render: t("HOOKS.REGISTER.NOTIFICATION.SUCCESS"),
+        render: t("HOOKS.USE_REGISTER.NOTIFICATION.SUCCESS"),
         type: "success",
         isLoading: false,
         autoClose: 5000,
@@ -55,7 +55,7 @@ export function useRegister() {
         }
 
         return toast.update(toastId, {
-          render: t("HOOKS.REGISTER.NOTIFICATION.INVALID_FORM"),
+          render: t("HOOKS.USE_REGISTER.NOTIFICATION.INVALID_FORM"),
           type: "error",
           isLoading: false,
           autoClose: 5000,
@@ -63,10 +63,10 @@ export function useRegister() {
       }
 
       if (code === "USERNAME_ALREADY_IN_USE_EXCEPTION") {
-        form.setError("username", { message: t("HOOKS.REGISTER.NOTIFICATION.USERNAME_ALREADY_IN_USE") });
+        form.setError("username", { message: t("HOOKS.USE_REGISTER.NOTIFICATION.USERNAME_ALREADY_IN_USE") });
 
         return toast.update(toastId, {
-          render: t("HOOKS.REGISTER.NOTIFICATION.USERNAME_ALREADY_IN_USE"),
+          render: t("HOOKS.USE_REGISTER.NOTIFICATION.USERNAME_ALREADY_IN_USE"),
           type: "error",
           isLoading: false,
           autoClose: 5000,
@@ -74,10 +74,10 @@ export function useRegister() {
       }
 
       if (code === "EMAIL_ALREADY_IN_USE_EXCEPTION") {
-        form.setError("email", { message: t("HOOKS.REGISTER.NOTIFICATION.EMAIL_ALREADY_IN_USE") });
+        form.setError("email", { message: t("HOOKS.USE_REGISTER.NOTIFICATION.EMAIL_ALREADY_IN_USE") });
 
         return toast.update(toastId, {
-          render: t("HOOKS.REGISTER.NOTIFICATION.EMAIL_ALREADY_IN_USE"),
+          render: t("HOOKS.USE_REGISTER.NOTIFICATION.EMAIL_ALREADY_IN_USE"),
           type: "error",
           isLoading: false,
           autoClose: 5000,
@@ -86,7 +86,7 @@ export function useRegister() {
     }
 
     return toast.update(toastId, {
-      render: t("HOOKS.REGISTER.NOTIFICATION.UNEXPECTED"),
+      render: t("HOOKS.USE_REGISTER.NOTIFICATION.UNEXPECTED"),
       type: "error",
       isLoading: false,
       autoClose: 5000,

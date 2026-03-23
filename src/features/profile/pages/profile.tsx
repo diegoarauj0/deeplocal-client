@@ -1,9 +1,8 @@
 import { ToggleLinkManagementModeComponent } from "../../link/components/toggleLinkManagementMode/toggleLinkManagementMode";
-import { EditProfileTriggerComponent, type InterfaceDefaultValues } from "../components/editProfile/editProfileTrigger";
+import { SettingsLinkComponent } from "../components/settingsLink/settingsLink";
 import { ProfileAvatarDisplayComponent } from "../components/profileAvatar/profileAvatarDisplay";
 import { CreateLinkTriggerComponent } from "../../link/components/createLink/createLinkTrigger";
 import { EditBackgroundTrigger } from "../components/editBackground/editBackgroundTrigger";
-import { ToggleThemeComponent } from "../../styles/components/toggleTheme";
 import { useThemeContext } from "../../styles/contexts/theme.context";
 import { LinksComponent } from "../../link/components/links/links";
 import { useLinks } from "../../link/hooks/reactQuery/useLinks";
@@ -18,6 +17,7 @@ import * as S from "./profile.style";
 import { useContext } from "react";
 import { AxiosError } from "axios";
 import { useLinkManagementModeContext } from "../../link/contexts/linkManagementMode.context";
+import { EditProfileTriggerComponent, type InterfaceDefaultValues } from "../components/editProfile/editProfileTrigger";
 
 function ProfileLoading() {
   return (
@@ -115,9 +115,6 @@ export function ProfilePage() {
   if (isUserError || isLinksError) {
     return (
       <ThemeProvider theme={defaultTheme}>
-        <S.Settings>
-          <ToggleThemeComponent />
-        </S.Settings>
         <ProfileError error={userError} identifier={identifier} />
       </ThemeProvider>
     );
@@ -134,10 +131,10 @@ export function ProfilePage() {
   return (
     <ThemeProvider theme={userTheme}>
       <S.Settings>
-        <ToggleThemeComponent />
-        {isOwner ? (
+        {isOwner && !isLinkManagementMode ? (
           <>
             <EditProfileTriggerComponent identifier={identifier || ""} defaultValues={editProfileDefaultValues} />
+            <SettingsLinkComponent />
             <EditBackgroundTrigger identifier={identifier || ""} />
           </>
         ) : null}
@@ -149,7 +146,7 @@ export function ProfilePage() {
         <S.ProfileTop $isBackgroundImage={hasBackgroundImage}>
           <ProfileAvatarDisplayComponent
             identifier={identifier || ""}
-            profileOwner={isOwner}
+            profileOwner={isOwner && !isLinkManagementMode}
             user={{
               avatar: user?.avatar,
               username: user?.username,
@@ -167,7 +164,7 @@ export function ProfilePage() {
         </S.ProfileTop>
         <S.LinksContainer>
           <S.ButtonsContainer>
-            <ToggleLinkManagementModeComponent isOwner={isOwner}  />
+            <ToggleLinkManagementModeComponent isOwner={isOwner} />
             {isLinkManagementMode ? null : <CreateLinkTriggerComponent userId={userId || ""} isOwner={isOwner} />}
           </S.ButtonsContainer>
           <LinksComponent links={links} isOwner={isOwner} userId={userId || ""} />

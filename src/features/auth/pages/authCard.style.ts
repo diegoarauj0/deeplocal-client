@@ -31,14 +31,6 @@ export const AuthForm = styled.form`
   width: 100%;
 `;
 
-export const Settings = styled.div`
-  position: absolute;
-  margin: 1.5rem;
-  z-index: 10;
-  right: 0%;
-  top: 0%;
-`;
-
 export const AuthSubmit = styled.button<{ $isValid: boolean; $isSubmitting: boolean }>`
   background-color: ${(props) => props.theme.primary.normal};
   color: ${(props) => props.theme.bg.dark};

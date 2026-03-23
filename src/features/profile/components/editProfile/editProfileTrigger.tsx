@@ -1,9 +1,9 @@
 import { PopupContext } from "../../../shared/contexts/popup.context";
 import type { ColorUser } from "../../../shared/deeplocal.http";
 import { EditProfileModalComponent } from "./editProfileModal";
+import { CircleUserRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import * as S from "./editProfile.style";
-import { Settings } from "lucide-react";
 import { useContext } from "react";
 
 export interface InterfaceDefaultValues {
@@ -32,7 +32,7 @@ export function EditProfileTriggerComponent({ defaultValues, identifier }: Inter
 
   return (
     <S.FloatingButton onClick={openModal} aria-label={t("common.openSettings")}>
-      <Settings />
+      <CircleUserRound />
     </S.FloatingButton>
   );
 }

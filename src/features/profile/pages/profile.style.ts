@@ -39,6 +39,7 @@ export const Profile = styled.div<{ $background: string | undefined | null }>`
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  align-content: flex-start;
   overflow-y: auto;
 
   @media (max-width: ${mobileBreakpoint}) {

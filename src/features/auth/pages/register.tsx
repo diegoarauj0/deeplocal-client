@@ -1,4 +1,3 @@
-import { ToggleThemeComponent } from "../../styles/components/toggleTheme";
 import { AtSign, CircleUserRound, RectangleEllipsis } from "lucide-react";
 import { InputComponent } from "../../shared/components/input/input";
 import { useRegister } from "../hooks/useRegister";
@@ -13,9 +12,6 @@ export function RegisterPage() {
 
   return (
     <S.AuthCard>
-      <S.Settings>
-        <ToggleThemeComponent />
-      </S.Settings>
       <S.AuthTitle>{t("PAGES.REGISTER.TITLE")}</S.AuthTitle>
       <S.AuthDescription>{t("PAGES.REGISTER.DESCRIPTION")}</S.AuthDescription>
       <FormProvider {...form}>

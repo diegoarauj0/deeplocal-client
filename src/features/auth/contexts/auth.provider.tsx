@@ -27,6 +27,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
     const isAuthenticated = !!refresh && !!access;
 
+    if (isAuthenticated === authenticated) return;
+
     setAuthenticated(isAuthenticated);
     setCurrentUserId(userId);
     setCurrentUsername(username);
@@ -59,11 +61,11 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
     handleStorage();
 
-    window.addEventListener("storage", handleStorage);
+    const IntervalId = setInterval(() => {
+      handleStorage();
+    }, 2000);
 
-    return () => {
-      window.removeEventListener("storage", handleStorage);
-    };
+    return () => clearInterval(IntervalId);
   }, []);
 
   return (
