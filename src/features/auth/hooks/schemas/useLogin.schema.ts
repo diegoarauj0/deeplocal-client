@@ -20,7 +20,7 @@ export function useLoginSchema() {
       .messages({
         "string.empty": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.REQUIRED"),
         "any.required": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.REQUIRED"),
-        "string.email": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.invalid"),
+        "string.email": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.INVALID"),
         "string.min": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.MIN", { min: userConstant.EMAIL_LENGTH_MIN }),
         "string.max": t("HOOKS.SCHEMAS.USE_LOGIN.EMAIL.MAX", { max: userConstant.EMAIL_LENGTH_MAX }),
       }),
