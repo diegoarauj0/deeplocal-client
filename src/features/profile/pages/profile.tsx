@@ -6,7 +6,7 @@ import { EditBackgroundTrigger } from "../components/editBackground/editBackgrou
 import { useThemeContext } from "../../styles/contexts/theme.context";
 import { LinksComponent } from "../../link/components/links/links";
 import { useLinks } from "../../link/hooks/reactQuery/useLinks";
-import { AuthContext, useAuthContext } from "../../auth/contexts/auth.context";
+import {  useAuthContext } from "../../auth/contexts/auth.context";
 import { useUser } from "../hooks/reactQuery/useUser";
 import { ThemeProvider } from "styled-components";
 import { variants } from "../../styles/themes";
@@ -14,10 +14,9 @@ import { useTranslation } from "react-i18next";
 import { AlertTriangle } from "lucide-react";
 import { useParams } from "react-router";
 import * as S from "./profile.style";
-import { useContext } from "react";
-import { AxiosError } from "axios";
 import { useLinkManagementModeContext } from "../../link/contexts/linkManagementMode.context";
 import { EditProfileTriggerComponent, type InterfaceDefaultValues } from "../components/editProfile/editProfileTrigger";
+import { AxiosError } from "axios";
 
 function ProfileLoading() {
   return (
