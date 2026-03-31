@@ -11,7 +11,7 @@ async function updateAvatarFlow(file: File) {
 
   await userService.updateAvatarService({ uploadId });
 
-  return { uploadId: "cu" };
+  return { uploadUrl, uploadId };
 }
 
 export function useUpdateAvatar(identifier: string) {
