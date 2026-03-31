@@ -37,8 +37,6 @@ export interface InterfaceTokens {
 
 const baseURL = import.meta.env.VITE_DEEP_LOCAL_URL || "http://localhost:3000";
 
-axios.defaults.withCredentials = true;
-
 let refreshRequest: Promise<string> | null = null;
 
 export const deepLocalInstance = axios.create({
