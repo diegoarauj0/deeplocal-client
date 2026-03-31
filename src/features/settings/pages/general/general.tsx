@@ -1,7 +1,7 @@
 import { useThemeContext, type ThemeType } from "../../../styles/contexts/theme.context";
 import { Panel, PanelHeader, PanelTitle, PanelSubtitle } from "../panel.style";
 import { useTranslation } from "react-i18next";
-import * as S from "./general.page.style";
+import * as S from "./general.style";
 import { useState } from "react";
 
 const languageOptions = [
