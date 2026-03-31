@@ -6,7 +6,7 @@ import { EditBackgroundTrigger } from "../components/editBackground/editBackgrou
 import { useThemeContext } from "../../styles/contexts/theme.context";
 import { LinksComponent } from "../../link/components/links/links";
 import { useLinks } from "../../link/hooks/reactQuery/useLinks";
-import { AuthContext } from "../../auth/contexts/auth.context";
+import { AuthContext, useAuthContext } from "../../auth/contexts/auth.context";
 import { useUser } from "../hooks/reactQuery/useUser";
 import { ThemeProvider } from "styled-components";
 import { variants } from "../../styles/themes";
@@ -80,7 +80,7 @@ function ProfileError({ error, identifier }: { error: Error | null; identifier?:
 
 export function ProfilePage() {
   const { themeProps: defaultTheme } = useThemeContext();
-  const { currentUserId } = useContext(AuthContext);
+  const { currentUserId } = useAuthContext();
   const { t } = useTranslation("profile");
   const { identifier } = useParams();
   const { isLinkManagementMode } = useLinkManagementModeContext();
@@ -134,10 +134,10 @@ export function ProfilePage() {
         {isOwner && !isLinkManagementMode ? (
           <>
             <EditProfileTriggerComponent identifier={identifier || ""} defaultValues={editProfileDefaultValues} />
-            <SettingsLinkComponent />
             <EditBackgroundTrigger identifier={identifier || ""} />
           </>
         ) : null}
+        <SettingsLinkComponent />
       </S.Settings>
       <S.Profile $background={user?.background}>
         {isLinkManagementMode ? (

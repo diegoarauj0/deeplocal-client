@@ -1,7 +1,7 @@
 import { Panel, PanelActions, PanelButton, PanelDescription, PanelHeader, PanelTitle } from "../panel.style";
 import { logoutAllService, logoutService } from "../../../auth/services/auth.service";
 import { deleteUserService } from "../../../profile/services/user.service";
-import * as S from "./security.page.style";
+import * as S from "./security.style";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";

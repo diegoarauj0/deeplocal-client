@@ -1,10 +1,11 @@
 import { deepLocalInstance, type InterfacePrivateUser, type InterfaceTokens } from "../../shared/deeplocal.http";
 
-const AUTH_ROUTES: Record<string, { URL: (...args: string[]) => string; METHOD: "post" | "delete" }> = {
+const AUTH_ROUTES: Record<string, { URL: (...args: string[]) => string; METHOD: "post" | "delete" | "get" }> = {
   SIGN_IN: { URL: () => "api/auth/signIn", METHOD: "post" },
   SIGN_UP: { URL: () => "api/auth/signUp", METHOD: "post" },
   LOGOUT: { URL: () => "api/auth/logout", METHOD: "delete" },
   LOGOUT_ALL: { URL: () => "api/auth/logoutAll", METHOD: "delete" },
+  ME: { URL: () => "api/auth/me", METHOD: "get" },
 };
 
 interface InterfaceSignInData {
@@ -15,6 +16,10 @@ interface InterfaceSignInData {
 interface InterfaceAuthResponse {
   user: InterfacePrivateUser;
   tokens: InterfaceTokens;
+}
+
+interface InterfaceUserResponse {
+  user: InterfacePrivateUser;
 }
 
 export async function signInService(data: InterfaceSignInData): Promise<InterfaceAuthResponse> {
@@ -40,6 +45,16 @@ export async function signUpService(data: InterfaceSignUpData): Promise<Interfac
   console.log(`[AuthService] signUpService ${METHOD.toUpperCase()}: ${URL}`);
 
   const response = await deepLocalInstance[METHOD](URL, data);
+  return response.data;
+}
+
+export async function meService(): Promise<InterfaceUserResponse> {
+  const METHOD = AUTH_ROUTES.ME.METHOD;
+  const URL = AUTH_ROUTES.ME.URL();
+
+  console.log(`[AuthService] meService ${METHOD.toUpperCase()}: ${URL}`);
+
+  const response = await deepLocalInstance[METHOD](URL);
   return response.data;
 }
 

@@ -109,7 +109,7 @@ export const BackButton = styled.button`
   &:hover {
     transition: 0.2s;
     background-color: ${(props) => props.theme.bg.normal};
-    transform: translate(-3px) scale(105%);
+    transform: scale(105%);
   }
 
   svg {
