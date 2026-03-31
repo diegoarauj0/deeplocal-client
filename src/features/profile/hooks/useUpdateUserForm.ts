@@ -1,6 +1,6 @@
 import { useUpdateUserSchema, type IUpdateUserSchema } from "./schemas/useUpdateUser.schema";
 import type { InterfaceDefaultValues } from "../components/editProfile/editProfileTrigger";
-import { useAuthContext } from "../../auth/contexts/auth.context";
+import { CURRENT_USERNAME_KEY } from "../../auth/contexts/auth.provider";
 import type { ColorUser } from "../../shared/deeplocal.http";
 import { useUpdateUser } from "./reactQuery/useUpdateUser";
 import { joiResolver } from "@hookform/resolvers/joi";
@@ -25,7 +25,6 @@ export function useUpdateUserForm(props: InterfaceUseUpdateUserForm) {
   const { mutateAsync } = useUpdateUser(identifier);
   const updateUserSchema = useUpdateUserSchema();
   const { t } = useTranslation("profile");
-  const { setCurrentUsername } = useAuthContext();
   const navigate = useNavigate();
 
   const form = useForm<IUpdateUserSchema>({
@@ -58,7 +57,7 @@ export function useUpdateUserForm(props: InterfaceUseUpdateUserForm) {
         });
 
         if (user.username === data.username) {
-          setCurrentUsername(user.username);
+          localStorage.setItem(CURRENT_USERNAME_KEY, user.username)
           await navigate(`/p/${user.username}`);
         }
 

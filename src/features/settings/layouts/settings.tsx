@@ -1,6 +1,6 @@
 import { useAuthContext } from "../../auth/contexts/auth.context";
 import { Outlet, useLocation, useNavigate } from "react-router";
-import { ArrowBigLeft, Home, SlidersHorizontal, UserKey, UserRound } from "lucide-react";
+import {  Home, SlidersHorizontal, UserKey, UserRound } from "lucide-react";
 import * as S from "./settings.style";
 
 const sections = [
