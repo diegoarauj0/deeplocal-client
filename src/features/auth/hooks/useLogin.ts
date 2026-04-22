@@ -41,7 +41,7 @@ export function useLogin() {
   function handleError(error: unknown) {
     if (error instanceof AxiosError) {
       const code = error.response?.data?.error?.code;
-
+      
       if (code === "VALIDATION_ERROR_EXCEPTION") {
         const details = error.response?.data?.error?.details ?? [];
 
