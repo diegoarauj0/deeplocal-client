@@ -94,6 +94,11 @@ deepLocalInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
+    
+    if (originalRequest.url === "api/auth/signIn" || originalRequest.url === "api/auth/signUp") {
+    return Promise.reject(error);  
+    }
+
     const status = error.response?.status;
     const requestUrl = originalRequest?.url as string | undefined;
     const isRefreshRequest = requestUrl?.includes("/auth/refresh");
